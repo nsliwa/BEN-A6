@@ -27,6 +27,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		49C2E0651AD5EEFB007C9D38 /* HTTPConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPConstants.h; sourceTree = "<group>"; };
 		AD72991D1AD5E13B0005A087 /* BEN-A6.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BEN-A6.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD7299211AD5E13B0005A087 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AD7299221AD5E13B0005A087 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -63,6 +64,7 @@
 		AD7299141AD5E13B0005A087 = {
 			isa = PBXGroup;
 			children = (
+				49C2E0651AD5EEFB007C9D38 /* HTTPConstants.h */,
 				AD72991F1AD5E13B0005A087 /* BEN-A6 */,
 				AD7299391AD5E13B0005A087 /* BEN-A6Tests */,
 				AD72991E1AD5E13B0005A087 /* Products */,
@@ -412,6 +414,7 @@
 				AD7299421AD5E13B0005A087 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AD7299431AD5E13B0005A087 /* Build configuration list for PBXNativeTarget "BEN-A6Tests" */ = {
 			isa = XCConfigurationList;
@@ -420,6 +423,7 @@
 				AD7299451AD5E13B0005A087 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
