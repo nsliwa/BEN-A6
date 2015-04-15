@@ -20,15 +20,12 @@ class GetLocationHandler(BaseHandler):
 	def get(self):
 		'''getLocations
 		'''
-
-		x = self.get_float_arg("x",default=0.0);
-		y = self.get_float_arg("y",default=0.0);
-		z = self.get_float_arg("z",default=0.0);
-
 		array = [];
 		array = self.db.locations.find();
-		#self.write_json({"Locations":array});
-		#self.write_json({"x":x,"y":y,"z":z});
+
+		for loc in array:
+			self.write_json({"x":loc["x"],"y":loc["y"],"z":loc["z"]});
+			self.write("\n");
 
 class AddLocationHandler(BaseHandler):
 	def post(self):
@@ -40,12 +37,11 @@ class AddLocationHandler(BaseHandler):
 		y = float(data["y"]);
 		z = float(data["z"]);
 
-		#dbid = self.db.locations.insert(
-			#{"x":x,"y":y,"z":z}
-		#);
+		dbid = self.db.locations.insert(
+			{"x":x,"y":y,"z":z}
+		);
 
 		self.write_json({"x":x,"y":y,"z":z});
-		#self.write(data);
 
 class LearnHandler(BaseHandler):
 	def post(self):
@@ -56,18 +52,12 @@ class LearnHandler(BaseHandler):
 		location = self.get_argument("location");
 		gps = self.get_argument("gps");
 
-		#data = json.loads(self.request.body);
-
 		self.write_json({"image":image,"flash":flash,"location":location,"gps":gps});
 
 class PredictionHandler(BaseHandler):
 	def get(self):
 		'''predict
 		'''
-		#image = self.get_argument("image");
-		#flash = self.get_argument("flash");
-		#location = self.get_argument("location");
-		#gps = self.get_argument("gps");
 
 		data = json.loads(self.request.body);
 
