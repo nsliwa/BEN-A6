@@ -53,7 +53,11 @@ class Application(tornado.web.Application):
                     (r"/AddLocation[/]?",
                         questionhandlers.AddLocationHandler), 
                     (r"/GetLocation[/]?",
-                        questionhandlers.GetLocationHandler),              
+                        questionhandlers.GetLocationHandler),
+                    (r"/LearnLocation[/]?",
+                        questionhandlers.LearnHandler),
+                    (r"/PredictLocation[/]?",
+                        questionhandlers.PredictionHandler)      
                     ]
 
         settings = {'debug':True}
