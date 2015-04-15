@@ -1,5 +1,8 @@
 #!/usr/bin/python
 
+# database imports
+from pymongo import MongoClient
+
 import tornado.web
 
 from tornado.web import HTTPError
@@ -16,16 +19,28 @@ class GetLocationHandler(BaseHandler):
 	def get(self):
 		'''getLocations
 		'''
-		array = self.get_argument("Locations");
-		self.write_json({"Locations":});
+
+		x = self.get_float_arg("x",default=0.0);
+		y = self.get_float_arg("y",default=0.0);
+		z = self.get_float_arg("z",default=0.0);
+
+		#array = self.db.locations.find();
+		#self.write_json({"Locations":array});
+		self.write_json({"x":x,"y":y,"z":z});
 
 class AddLocationHandler(BaseHandler):
 	def post(self):
 		'''addLocation
 		'''
-		x = self.get_float_arg("x",default=0.0);
-		y = self.get_float_arg("y",default=0.0);
-		z = self.get_float_arg("z",default=0.0);
+		data = json.loads(self.response.body);
+
+		x = float(data["x"]);
+		y = float(data["y"]);
+		z = float(data["z"]);
+
+		dbid = self.db.locations.insert(
+			{"x":x,"y":y,"z":z}
+		);
 
 		self.write_json({"x":x,"y":y,"z":z});
 

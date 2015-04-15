@@ -18,6 +18,7 @@ from tornado.options import define, options
 from basehandler import BaseHandler
 import examplehandlers
 import sklearnhandlers
+import questionhandlers
 
 # Setup information for tornado class
 define("port", default=8000,
@@ -49,10 +50,10 @@ class Application(tornado.web.Application):
                         sklearnhandlers.UpdateModelForDatasetId),     
                     (r"/PredictOne[/]?",
                         sklearnhandlers.PredictOneFromDatasetId),
-                    (r"/addLocation[/]?",
-                        questionhandler.AddLocationHandler), 
-                    (r"/getLocation[/]?",
-                        questionhandler.GetLocationHandler),              
+                    (r"/AddLocation[/]?",
+                        questionhandlers.AddLocationHandler), 
+                    (r"/GetLocation[/]?",
+                        questionhandlers.GetLocationHandler),              
                     ]
 
         settings = {'debug':True}
