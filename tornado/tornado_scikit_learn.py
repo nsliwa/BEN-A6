@@ -48,7 +48,11 @@ class Application(tornado.web.Application):
                     (r"/UpdateModel[/]?",
                         sklearnhandlers.UpdateModelForDatasetId),     
                     (r"/PredictOne[/]?",
-                        sklearnhandlers.PredictOneFromDatasetId),               
+                        sklearnhandlers.PredictOneFromDatasetId),
+                    (r"/addLocation[/]?",
+                        questionhandler.AddLocationHandler), 
+                    (r"/getLocation[/]?",
+                        questionhandler.GetLocationHandler),              
                     ]
 
         settings = {'debug':True}
