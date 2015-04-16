@@ -12,7 +12,7 @@ from tornado.options import define, options
 
 from basehandler import BaseHandler
 
-from sklearn.neighbors import KNeighborsClassifier
+from sklearn import svm
 import pickle
 from bson.binary import Binary
 import time
@@ -46,7 +46,7 @@ class AddLocationHandler(BaseHandler):
 		self.write_json({"locations":array});
 		#	self.write("\n");
 
-class AddLabeledDataHandler(BaseHandler):
+class AddLabeledInstanceHandler(BaseHandler):
 	# @tornado.web.asynchronous
 	def post(self):
 		'''getLocations
@@ -79,15 +79,15 @@ class AddLabeledInstanceHandler(BaseHandler):
 		'''
 
 		#print self.request.body;
-		data = self.request.body;
+		data = json.loads(self.request.body);
 
-		#dsid = data["dsid"];
-		#label = data["label"];
-		#feature = data["feature"];
+		dsid = data["dsid"];
+		label = data["label"];
+		feature = data["feature"];
 
-		#dbid = self.db.labeledinstances.insert(
-		#	{"feature":feature,"label":label,"dsid":dsid}
-		#);
+		dbid = self.db.labeledinstances.insert(
+			{"feature":feature,"label":label,"dsid":dsid}
+		);
 		#self.write_json({"id":str(dbid),"feature":feature,"label":label});
 		self.write(data);
 
@@ -103,15 +103,14 @@ class LearnHandler(BaseHandler):
 			feature = a["feature"];
 			gps = feature["gps"];
 			compass = feature["compass"];
-			time = feature["time"];
 
-			f.append([gps["lat"],gps["long"],compass["x"],compass["y"],compass["z"],time]);
+			f.append([float(gps["lat"]),float(gps["long"]),float(compass["x"]),float(compass["y"]),float(compass["z"])]);
 
 		l=[];
 		for a in self.db.labeledinstances.find({"dsid": { "$exists": True } }):
 			l.append(a["label"]);
 
-		c1 = KNeighborsClassifier(n_neighbors=2);
+		c1 = svm.SVC();
 		acc = -1;
 		if l:
 			c1.fit(f,l); # training
@@ -137,21 +136,24 @@ class PredictionHandler(BaseHandler):
 	def post(self):
 		'''predict
 		'''
-
-		print self.request.body;
-		data = json.loads(self.request.body);
 		
-		# location = data["location"];
-		# questions = data["question"];
+		data = json.loads(self.request.body);	
 
-		# self.write_json({"location":location,"question":question});
+		vals = data["feature"];
+		gps = vals["gps"];
+		compass = vals["compass"];
+		fvals = [float(gps["lat"]),float(gps["long"]),float(compass["x"]),float(compass["y"]),float(compass["z"])];
+		dsid  = data['dsid'];
 
-		data = json.loads(self.request.body);
-
-		dsid = data["dsid"];
-		feature = data["feature"];
-
-		self.write_json({"label":"dummy label"});
+		# load the model from the database (using pickle)
+		# we are blocking tornado!! no!!
+		if(self.clf.get(dsid) is None):
+			print 'Loading Model From DB';
+			tmp = self.db.models.find_one({"dsid":dsid});
+			self.clf[dsid] = pickle.loads(tmp['model']);
+	
+		predLabel = self.clf[dsid].predict(fvals);
+		self.write_json({"label":str(predLabel)});
 
 
 class RequestCurrentDatasetId(BaseHandler):

@@ -53,7 +53,7 @@ class Application(tornado.web.Application):
                     (r"/PredictOne[/]?",
                         sklearnhandlers.PredictOneFromDatasetId),
                     (r"/AddLearningData[/]?",
-                        questionhandlers.AddLabeledDataHandler), 
+                        questionhandlers.AddLabeledInstanceHandler), 
                     (r"/AddLocation[/]?",
                         questionhandlers.AddLocationHandler),
                     (r"/GetLocations[/]?",
