@@ -22,36 +22,75 @@ class GetLocationHandler(BaseHandler):
 	def get(self):
 		'''getLocations
 		'''
-		array = [];
-		array = self.db.locations.find();
+		array=[];
+		for a in self.db.locations.find({"location": { "$exists": True } }):
+			array.append(a["location"]);
 
-		for loc in array:
-			self.write_json({"x":loc["x"],"y":loc["y"],"z":loc["z"]});
-			self.write("\n");
+		#for loc in array:
+		self.write_json({"locations":array});
+		#	self.write("\n");
 
 class AddLocationHandler(BaseHandler):
 	def post(self):
-		'''addLocation
+		'''getLocations
 		'''
 		data = json.loads(self.request.body);
-
-		dsid = data["dsid"];
-		label = data["label"];
-		feature = data["feature"];
-
-		dbid = self.db.labeledinstances.insert(
-			{"feature":feature,"label":label,"dsid":dsid}
+		self.db.locations.insert(
+			{"location":data["location"]}
 		);
-		self.write_json({"id":str(dbid),"feature":feature,"label":label});
+		array=[];
+		for a in self.db.locations.find({"location": { "$exists": True } }):
+			array.append(a["location"]);
+
+		#for loc in array:
+		self.write_json({"locations":array});
+		#	self.write("\n");
+
+class AddLabeledDataHandler(BaseHandler):
+	def post(self):
+		'''getLocations
+		'''
+		data = json.loads(self.request.body);
+		
+		# self.db.locations.insert(
+		# 	{"location":data["location"]}
+		# );
+		# array=[];
+		# for a in self.db.locations.find({"location": { "$exists": True } }):
+		# 	array.append(a["location"]);
+
+		#for loc in array:
+		self.write_json(data);
+		#	self.write("\n");
+
+class AddLabeledInstanceHandler(BaseHandler):
+	@tornado.web.asynchronous
+	def post(self):
+		'''addLocation
+		'''
+
+		#print self.request.body;
+		data = self.request.body;
+
+		#dsid = data["dsid"];
+		#label = data["label"];
+		#feature = data["feature"];
+
+		#dbid = self.db.labeledinstances.insert(
+		#	{"feature":feature,"label":label,"dsid":dsid}
+		#);
+		#self.write_json({"id":str(dbid),"feature":feature,"label":label});
+		self.write(data);
 
 class LearnHandler(BaseHandler):
-	def get(self):
+	def post(self):
 		'''learn
 		'''
+		print self.request.body;
 		dsid = self.get_int_arg("dsid",default=0);
 		
 		f=[];
-		for a in self.db.labeledinstances.find({"dsid":dsid}):
+		for a in self.db.labeledinstances.find({"dsid": { "$exists": True } }):
 			feature = a["feature"];
 			gps = feature["gps"];
 			compass = feature["compass"];
@@ -60,7 +99,7 @@ class LearnHandler(BaseHandler):
 			f.append([gps["lat"],gps["long"],compass["x"],compass["y"],compass["z"],time]);
 
 		l=[];
-		for a in self.db.labeledinstances.find({"dsid":dsid}):
+		for a in self.db.labeledinstances.find({"dsid": { "$exists": True } }):
 			l.append(a["label"]);
 
 		c1 = KNeighborsClassifier(n_neighbors=2);
@@ -84,11 +123,13 @@ class LearnHandler(BaseHandler):
 		
 		self.write_json({"resubAccuracy":acc});
 
+
 class PredictionHandler(BaseHandler):
 	def post(self):
 		'''predict
 		'''
 
+		print self.request.body;
 		data = json.loads(self.request.body);
 		
 		location = data["location"];
