@@ -240,10 +240,10 @@
             </objects>
             <point key="canvasLocation" x="647" y="-84"/>
         </scene>
-        <!--Learn View Controller-->
+        <!--Learning View Controller-->
         <scene sceneID="BPL-3S-mOM">
             <objects>
-                <viewController id="yRH-dR-jDi" customClass="LearnViewController" customModule="BEN_A6" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="yRH-dR-jDi" customClass="LearningViewController" customModule="BEN_A6" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dvX-jI-f2f"/>
                         <viewControllerLayoutGuide type="bottom" id="ccV-HJ-Hii"/>
@@ -277,7 +277,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gHH-1L-F3T">
-                                <rect key="frame" x="16" y="367" width="45" height="45"/>
+                                <rect key="frame" x="16" y="404" width="45" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="45" id="20m-3L-pqS"/>
                                     <constraint firstAttribute="height" constant="45" id="Wru-8i-RgH"/>
@@ -335,7 +335,7 @@
                             <constraint firstItem="Nff-OS-kKV" firstAttribute="centerX" secondItem="ygL-qn-cSW" secondAttribute="centerX" id="9rZ-SQ-xJx"/>
                             <constraint firstItem="Nff-OS-kKV" firstAttribute="top" secondItem="dvX-jI-f2f" secondAttribute="bottom" constant="32" id="E6l-xj-Bbg"/>
                             <constraint firstItem="DIZ-IL-2Ie" firstAttribute="top" secondItem="Qhy-wz-uVg" secondAttribute="bottom" id="G7o-JN-F7c"/>
-                            <constraint firstItem="gHH-1L-F3T" firstAttribute="top" secondItem="Hca-63-dys" secondAttribute="bottom" constant="10" id="H8S-M8-jB4"/>
+                            <constraint firstItem="gHH-1L-F3T" firstAttribute="top" secondItem="Hca-63-dys" secondAttribute="bottom" constant="47" id="H8S-M8-jB4"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Qhy-wz-uVg" secondAttribute="trailing" constant="18" id="LPG-Xc-ZAn"/>
                             <constraint firstItem="fLZ-bx-CEw" firstAttribute="top" secondItem="6GQ-4y-FSk" secondAttribute="bottom" constant="156" id="M8T-7S-Xvd"/>
                             <constraint firstItem="fLZ-bx-CEw" firstAttribute="top" secondItem="Qhy-wz-uVg" secondAttribute="bottom" constant="3" id="Nlm-H9-bN2"/>
@@ -365,10 +365,10 @@
             </objects>
             <point key="canvasLocation" x="1074" y="-291"/>
         </scene>
-        <!--Predict View Controller-->
+        <!--Predicting View Controller-->
         <scene sceneID="Nn2-k7-f9i">
             <objects>
-                <viewController id="U97-gx-7vm" customClass="PredictViewController" customModule="BEN_A6" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="U97-gx-7vm" customClass="PredictingViewController" customModule="BEN_A6" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="UgZ-AC-OOu"/>
                         <viewControllerLayoutGuide type="bottom" id="QEe-qq-Ft3"/>

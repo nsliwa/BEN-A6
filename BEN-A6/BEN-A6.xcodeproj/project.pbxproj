@@ -22,6 +22,8 @@
 		AD5390071ADE62E0007FE406 /* AskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5390061ADE62E0007FE406 /* AskViewController.swift */; };
 		AD53900A1ADE73B1007FE406 /* LearnViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5390091ADE73B1007FE406 /* LearnViewController.swift */; };
 		AD53900C1ADE73BE007FE406 /* PredictViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD53900B1ADE73BE007FE406 /* PredictViewController.swift */; };
+		AD53900E1AE02D4C007FE406 /* LearningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD53900D1AE02D4C007FE406 /* LearningViewController.swift */; };
+		AD5390101AE03CB8007FE406 /* PredictingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD53900F1AE03CB8007FE406 /* PredictingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +58,8 @@
 		AD5390081ADE6504007FE406 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
 		AD5390091ADE73B1007FE406 /* LearnViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnViewController.swift; sourceTree = "<group>"; };
 		AD53900B1ADE73BE007FE406 /* PredictViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PredictViewController.swift; sourceTree = "<group>"; };
+		AD53900D1AE02D4C007FE406 /* LearningViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearningViewController.swift; sourceTree = "<group>"; };
+		AD53900F1AE03CB8007FE406 /* PredictingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PredictingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,8 +167,10 @@
 			isa = PBXGroup;
 			children = (
 				AD5390011ADE5B42007FE406 /* CaptureViewController.swift */,
-				AD5390091ADE73B1007FE406 /* LearnViewController.swift */,
 				AD53900B1ADE73BE007FE406 /* PredictViewController.swift */,
+				AD5390091ADE73B1007FE406 /* LearnViewController.swift */,
+				AD53900D1AE02D4C007FE406 /* LearningViewController.swift */,
+				AD53900F1AE03CB8007FE406 /* PredictingViewController.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -279,6 +285,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD53900C1ADE73BE007FE406 /* PredictViewController.swift in Sources */,
+				AD53900E1AE02D4C007FE406 /* LearningViewController.swift in Sources */,
 				AD5390071ADE62E0007FE406 /* AskViewController.swift in Sources */,
 				AD538FD31ADE596C007FE406 /* ViewController.swift in Sources */,
 				AD53900A1ADE73B1007FE406 /* LearnViewController.swift in Sources */,
@@ -286,6 +293,7 @@
 				AD5390031ADE5B42007FE406 /* CaptureViewController.swift in Sources */,
 				AD538FFF1ADE5B09007FE406 /* MasterViewController.swift in Sources */,
 				AD538FD11ADE596C007FE406 /* AppDelegate.swift in Sources */,
+				AD5390101AE03CB8007FE406 /* PredictingViewController.swift in Sources */,
 				AD538FFD1ADE5ABB007FE406 /* VideoAnalgesic.swift in Sources */,
 				AD538FFC1ADE5ABB007FE406 /* UIImage+ColorAtPixel.m in Sources */,
 			);

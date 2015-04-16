@@ -97,6 +97,8 @@ class CaptureViewController: UIViewController {
                 self.capturedMagneticField = deviceMotion.magneticField
                 self.capturedPosition = deviceMotion.attitude
                 
+                NSLog(deviceMotion.description)
+                
             }
         }
         
@@ -188,7 +190,7 @@ class CaptureViewController: UIViewController {
         let hour = components.hour
         
         if (segue.identifier == "segue_modal_learn") {
-            let vc = segue.destinationViewController as! LearnViewController
+            let vc = segue.destinationViewController as! LearningViewController
             vc.capturedImage = capturedImage
             
             vc.capturedCameraPosition = capturedPosition
@@ -198,7 +200,7 @@ class CaptureViewController: UIViewController {
             NSLog("segue_learn")
         }
         else if (segue.identifier == "segue_modal_predict") {
-            let vc = segue.destinationViewController as! PredictViewController
+            let vc = segue.destinationViewController as! PredictingViewController
             vc.capturedImage = capturedImage
             
             vc.capturedCameraPosition = capturedPosition
