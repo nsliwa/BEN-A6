@@ -141,7 +141,14 @@ class PredictionHandler(BaseHandler):
 		print self.request.body;
 		data = json.loads(self.request.body);
 		
-		location = data["location"];
-		questions = data["question"];
+		# location = data["location"];
+		# questions = data["question"];
 
-		self.write_json({"location":location,"question":question});
+		# self.write_json({"location":location,"question":question});
+
+		data = json.loads(self.request.body);
+
+		dsid = data["dsid"];
+		feature = data["feature"];
+
+		self.write_json({"label":"dummy label"});

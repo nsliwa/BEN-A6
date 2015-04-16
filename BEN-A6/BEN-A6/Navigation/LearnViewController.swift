@@ -29,6 +29,7 @@ class LearnViewController: UIViewController,UIPickerViewDataSource,UIPickerViewD
     var capturedImage: UIImage! = nil
     var pickerData:NSMutableArray = ["Peruna Statue","Dallas Hall Fountain","Blanton Fountain","Meadows School Fountain","Fondren Fountain","Meadows Museum Fountain","Centennial Fountain"]
     
+    // gets photo metadata
     var capturedCameraPosition: CMAttitude! = nil
     var capturedMagneticField: CMCalibratedMagneticField! = nil
     var capturedTime: NSNumber = 0
@@ -161,6 +162,8 @@ class LearnViewController: UIViewController,UIPickerViewDataSource,UIPickerViewD
         if (error == nil) {
             NSLog("error: %s", error)
             //button_upload.enabled = false
+            errorCount++
+            errorMsgs = errorMsgs + (NSString(format:"Error %d: Failed to get GPS data\n", errorCount) as String)
         }
         else {
             //button_upload.enabled = true

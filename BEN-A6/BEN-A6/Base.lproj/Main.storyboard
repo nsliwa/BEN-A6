@@ -271,7 +271,7 @@
                                     <action selector="onClick_upload:" destination="yRH-dR-jDi" eventType="touchUpInside" id="1oZ-zO-hnf"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="click to upload" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6GQ-4y-FSk">
+                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="&lt;- click to upload" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6GQ-4y-FSk">
                                 <rect key="frame" x="75" y="320" width="211" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -300,10 +300,10 @@
                                 </connections>
                             </button>
                             <pickerView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qhy-wz-uVg">
-                                <rect key="frame" x="75" y="354" width="211" height="68"/>
+                                <rect key="frame" x="75" y="358" width="211" height="145"/>
                             </pickerView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DIZ-IL-2Ie">
-                                <rect key="frame" x="285" y="433" width="35" height="35"/>
+                                <rect key="frame" x="285" y="503" width="35" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="h9F-bG-h85"/>
                                     <constraint firstAttribute="width" constant="35" id="s7e-Dz-8g3"/>
@@ -316,7 +316,7 @@
                                 </connections>
                             </button>
                             <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fLZ-bx-CEw">
-                                <rect key="frame" x="75" y="435" width="211" height="30"/>
+                                <rect key="frame" x="75" y="506" width="211" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="211" id="Nlt-Kc-Zze"/>
                                     <constraint firstAttribute="height" constant="30" id="ao4-qu-UBr"/>
@@ -334,15 +334,15 @@
                             <constraint firstAttribute="trailingMargin" secondItem="DIZ-IL-2Ie" secondAttribute="trailing" constant="-16" id="9IA-8J-fYE"/>
                             <constraint firstItem="Nff-OS-kKV" firstAttribute="centerX" secondItem="ygL-qn-cSW" secondAttribute="centerX" id="9rZ-SQ-xJx"/>
                             <constraint firstItem="Nff-OS-kKV" firstAttribute="top" secondItem="dvX-jI-f2f" secondAttribute="bottom" constant="32" id="E6l-xj-Bbg"/>
-                            <constraint firstItem="DIZ-IL-2Ie" firstAttribute="top" secondItem="Qhy-wz-uVg" secondAttribute="bottom" constant="11" id="G7o-JN-F7c"/>
+                            <constraint firstItem="DIZ-IL-2Ie" firstAttribute="top" secondItem="Qhy-wz-uVg" secondAttribute="bottom" id="G7o-JN-F7c"/>
                             <constraint firstItem="gHH-1L-F3T" firstAttribute="top" secondItem="Hca-63-dys" secondAttribute="bottom" constant="10" id="H8S-M8-jB4"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Qhy-wz-uVg" secondAttribute="trailing" constant="18" id="LPG-Xc-ZAn"/>
-                            <constraint firstItem="fLZ-bx-CEw" firstAttribute="top" secondItem="6GQ-4y-FSk" secondAttribute="bottom" constant="85" id="M8T-7S-Xvd"/>
-                            <constraint firstItem="fLZ-bx-CEw" firstAttribute="top" secondItem="Qhy-wz-uVg" secondAttribute="bottom" constant="13" id="Nlm-H9-bN2"/>
+                            <constraint firstItem="fLZ-bx-CEw" firstAttribute="top" secondItem="6GQ-4y-FSk" secondAttribute="bottom" constant="156" id="M8T-7S-Xvd"/>
+                            <constraint firstItem="fLZ-bx-CEw" firstAttribute="top" secondItem="Qhy-wz-uVg" secondAttribute="bottom" constant="3" id="Nlm-H9-bN2"/>
                             <constraint firstItem="Qhy-wz-uVg" firstAttribute="leading" secondItem="gHH-1L-F3T" secondAttribute="trailing" constant="14" id="PiB-17-4QP"/>
                             <constraint firstItem="gHH-1L-F3T" firstAttribute="leading" secondItem="ygL-qn-cSW" secondAttribute="leadingMargin" id="RVb-pE-Jhu"/>
                             <constraint firstItem="YKY-cw-Ha7" firstAttribute="top" secondItem="dvX-jI-f2f" secondAttribute="bottom" id="Vna-wQ-b32"/>
-                            <constraint firstItem="Qhy-wz-uVg" firstAttribute="top" secondItem="6GQ-4y-FSk" secondAttribute="bottom" constant="4" id="Wci-Bc-Gt1"/>
+                            <constraint firstItem="Qhy-wz-uVg" firstAttribute="top" secondItem="6GQ-4y-FSk" secondAttribute="bottom" constant="8" id="Wci-Bc-Gt1"/>
                             <constraint firstItem="Hca-63-dys" firstAttribute="top" secondItem="Nff-OS-kKV" secondAttribute="bottom" constant="5" id="YQe-Kn-cwE"/>
                             <constraint firstItem="6GQ-4y-FSk" firstAttribute="top" secondItem="Nff-OS-kKV" secondAttribute="bottom" constant="13" id="g2u-uB-oka"/>
                             <constraint firstAttribute="trailingMargin" secondItem="6GQ-4y-FSk" secondAttribute="trailing" constant="18" id="nMN-tt-GJ5"/>
@@ -396,12 +396,12 @@
                                     <action selector="onClick_upload:" destination="U97-gx-7vm" eventType="touchUpInside" id="vSX-eC-C2y"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="click to upload" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bLy-Jd-nMS">
+                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="&lt;- click to upload" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bLy-Jd-nMS">
                                 <rect key="frame" x="84" y="320" width="211" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="click to select location" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="t7f-TZ-0Ou">
+                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="location" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="t7f-TZ-0Ou">
                                 <rect key="frame" x="84" y="375" width="211" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -420,10 +420,9 @@
                                     <constraint firstAttribute="height" constant="45" id="lxq-KD-oCF"/>
                                 </constraints>
                             </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IyV-6F-w1g">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Future Development: Watson will answer a secret question about this artifact" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IyV-6F-w1g">
                                 <rect key="frame" x="84" y="422" width="211" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
