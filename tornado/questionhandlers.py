@@ -47,11 +47,12 @@ class AddLocationHandler(BaseHandler):
 		#	self.write("\n");
 
 class AddLabeledDataHandler(BaseHandler):
+	@tornado.web.asynchronous
 	def post(self):
 		'''getLocations
 		'''
 		data = json.loads(self.request.body);
-		
+
 		# self.db.locations.insert(
 		# 	{"location":data["location"]}
 		# );
