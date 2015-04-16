@@ -12,9 +12,11 @@ from tornado.options import define, options
 
 from basehandler import BaseHandler
 
+from sklearn.neighbors import KNeighborsClassifier
+import pickle
+from bson.binary import Binary
 import time
 import json
-#import simplejson as json
 
 class GetLocationHandler(BaseHandler):
 	def get(self):
@@ -33,32 +35,32 @@ class AddLocationHandler(BaseHandler):
 		'''
 		data = json.loads(self.request.body);
 
-		x = float(data["x"]);
-		y = float(data["y"]);
-		z = float(data["z"]);
+		dsid = data["dsid"];
+		label = data["label"];
+		feature = data["feature"];
 
-		dbid = self.db.locations.insert(
-			{"x":x,"y":y,"z":z}
+		dbid = self.db.labeledinstances.insert(
+			{"feature":feature,"label":label,"dsid":dsid}
 		);
-
-		self.write_json({"x":x,"y":y,"z":z});
+		self.write_json({"id":str(dbid),"feature":feature,"label":label});
 
 class LearnHandler(BaseHandler):
 	def post(self):
 		'''learn
 		'''
-		image = self.get_argument("image");
-		flash = self.get_argument("flash");
-		location = self.get_argument("location");
-		gps = self.get_argument("gps");
+		dsid = self.get_int_arg("dsid",default=0);
 
-		self.write_json({"image":image,"flash":flash,"location":location,"gps":gps});
+		f=[];
+		
 
 class PredictionHandler(BaseHandler):
-	def get(self):
+	def post(self):
 		'''predict
 		'''
 
 		data = json.loads(self.request.body);
+		
+		location = data["location"];
+		questions = data["question"];
 
 		self.write_json({"location":location,"question":question});
