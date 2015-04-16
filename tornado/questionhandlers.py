@@ -45,13 +45,44 @@ class AddLocationHandler(BaseHandler):
 		self.write_json({"id":str(dbid),"feature":feature,"label":label});
 
 class LearnHandler(BaseHandler):
-	def post(self):
+	def get(self):
 		'''learn
 		'''
 		dsid = self.get_int_arg("dsid",default=0);
-
-		f=[];
 		
+		f=[];
+		for a in self.db.labeledinstances.find({"dsid":dsid}):
+			feature = a["feature"];
+			gps = feature["gps"];
+			compass = feature["compass"];
+			time = feature["time"];
+
+			f.append([gps["lat"],gps["long"],compass["x"],compass["y"],compass["z"],time]);
+
+		l=[];
+		for a in self.db.labeledinstances.find({"dsid":dsid}):
+			l.append(a["label"]);
+
+		c1 = KNeighborsClassifier(n_neighbors=2);
+		acc = -1;
+		if l:
+			c1.fit(f,l); # training
+			lstar = c1.predict(f);
+
+			#c[dsid] = c1
+			
+			if(self.clf == []):
+				self.clf = {dsid: c1};
+			else:
+				self.clf[dsid] = c1;
+				
+			acc = sum(lstar==l)/float(len(l));
+			bytes = pickle.dumps(c1);
+			self.db.models.update({"dsid":dsid},
+				{  "$set": {"model":Binary(bytes)}  },
+				upsert=True)
+		
+		self.write_json({"resubAccuracy":acc});
 
 class PredictionHandler(BaseHandler):
 	def post(self):
