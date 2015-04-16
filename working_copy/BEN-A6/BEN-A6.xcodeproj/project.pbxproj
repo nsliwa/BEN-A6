@@ -1,0 +1,504 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AD538FD11ADE596C007FE406 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD538FD01ADE596C007FE406 /* AppDelegate.swift */; };
+		AD538FD31ADE596C007FE406 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD538FD21ADE596C007FE406 /* ViewController.swift */; };
+		AD538FD61ADE596C007FE406 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD538FD41ADE596C007FE406 /* Main.storyboard */; };
+		AD538FD81ADE596C007FE406 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD538FD71ADE596C007FE406 /* Images.xcassets */; };
+		AD538FDB1ADE596C007FE406 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD538FD91ADE596C007FE406 /* LaunchScreen.xib */; };
+		AD538FE71ADE596D007FE406 /* BEN_A6Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD538FE61ADE596D007FE406 /* BEN_A6Tests.swift */; };
+		AD538FFB1ADE5ABB007FE406 /* OBShapedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = AD538FF51ADE5ABB007FE406 /* OBShapedButton.m */; };
+		AD538FFC1ADE5ABB007FE406 /* UIImage+ColorAtPixel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD538FF81ADE5ABB007FE406 /* UIImage+ColorAtPixel.m */; };
+		AD538FFD1ADE5ABB007FE406 /* VideoAnalgesic.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD538FF91ADE5ABB007FE406 /* VideoAnalgesic.swift */; };
+		AD538FFF1ADE5B09007FE406 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD538FFE1ADE5B09007FE406 /* MasterViewController.swift */; };
+		AD5390031ADE5B42007FE406 /* CaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5390011ADE5B42007FE406 /* CaptureViewController.swift */; };
+		AD5390051ADE5E67007FE406 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AD5390041ADE5E67007FE406 /* Info.plist */; };
+		AD5390071ADE62E0007FE406 /* AskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5390061ADE62E0007FE406 /* AskViewController.swift */; };
+		AD53900A1ADE73B1007FE406 /* LearnViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5390091ADE73B1007FE406 /* LearnViewController.swift */; };
+		AD53900C1ADE73BE007FE406 /* PredictViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD53900B1ADE73BE007FE406 /* PredictViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AD538FE11ADE596D007FE406 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AD538FC31ADE596C007FE406 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AD538FCA1ADE596C007FE406;
+			remoteInfo = "BEN-A6";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		AD538FCB1ADE596C007FE406 /* BEN-A6.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BEN-A6.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD538FD01ADE596C007FE406 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		AD538FD21ADE596C007FE406 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		AD538FD51ADE596C007FE406 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		AD538FD71ADE596C007FE406 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		AD538FDA1ADE596C007FE406 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		AD538FE01ADE596D007FE406 /* BEN-A6Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "BEN-A6Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD538FE51ADE596D007FE406 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AD538FE61ADE596D007FE406 /* BEN_A6Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BEN_A6Tests.swift; sourceTree = "<group>"; };
+		AD538FF41ADE5ABB007FE406 /* OBShapedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBShapedButton.h; sourceTree = "<group>"; };
+		AD538FF51ADE5ABB007FE406 /* OBShapedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBShapedButton.m; sourceTree = "<group>"; };
+		AD538FF71ADE5ABB007FE406 /* UIImage+ColorAtPixel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ColorAtPixel.h"; sourceTree = "<group>"; };
+		AD538FF81ADE5ABB007FE406 /* UIImage+ColorAtPixel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ColorAtPixel.m"; sourceTree = "<group>"; };
+		AD538FF91ADE5ABB007FE406 /* VideoAnalgesic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideoAnalgesic.swift; path = Supporting_Files/VideoAnalgesic.swift; sourceTree = "<group>"; };
+		AD538FFE1ADE5B09007FE406 /* MasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
+		AD5390011ADE5B42007FE406 /* CaptureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureViewController.swift; sourceTree = "<group>"; };
+		AD5390041ADE5E67007FE406 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AD5390061ADE62E0007FE406 /* AskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AskViewController.swift; sourceTree = "<group>"; };
+		AD5390081ADE6504007FE406 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
+		AD5390091ADE73B1007FE406 /* LearnViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnViewController.swift; sourceTree = "<group>"; };
+		AD53900B1ADE73BE007FE406 /* PredictViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PredictViewController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AD538FC81ADE596C007FE406 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AD538FDD1ADE596D007FE406 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AD538FC21ADE596C007FE406 = {
+			isa = PBXGroup;
+			children = (
+				AD538FCD1ADE596C007FE406 /* BEN-A6 */,
+				AD538FE31ADE596D007FE406 /* BEN-A6Tests */,
+				AD538FCC1ADE596C007FE406 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AD538FCC1ADE596C007FE406 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AD538FCB1ADE596C007FE406 /* BEN-A6.app */,
+				AD538FE01ADE596D007FE406 /* BEN-A6Tests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AD538FCD1ADE596C007FE406 /* BEN-A6 */ = {
+			isa = PBXGroup;
+			children = (
+				AD538FD41ADE596C007FE406 /* Main.storyboard */,
+				AD538FD91ADE596C007FE406 /* LaunchScreen.xib */,
+				AD538FD71ADE596C007FE406 /* Images.xcassets */,
+				AD538FD01ADE596C007FE406 /* AppDelegate.swift */,
+				AD538FD21ADE596C007FE406 /* ViewController.swift */,
+				AD538FFE1ADE5B09007FE406 /* MasterViewController.swift */,
+				AD5390001ADE5B42007FE406 /* Navigation */,
+				AD5390021ADE5B42007FE406 /* Watson */,
+				AD538FCE1ADE596C007FE406 /* Supporting Files */,
+			);
+			path = "BEN-A6";
+			sourceTree = "<group>";
+		};
+		AD538FCE1ADE596C007FE406 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				AD5390041ADE5E67007FE406 /* Info.plist */,
+				AD5390081ADE6504007FE406 /* BridgingHeader.h */,
+				AD538FF31ADE5ABB007FE406 /* OBShapedButton */,
+				AD538FF61ADE5ABB007FE406 /* UIImage+ColorAtPixel */,
+				AD538FF91ADE5ABB007FE406 /* VideoAnalgesic.swift */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AD538FE31ADE596D007FE406 /* BEN-A6Tests */ = {
+			isa = PBXGroup;
+			children = (
+				AD538FE61ADE596D007FE406 /* BEN_A6Tests.swift */,
+				AD538FE41ADE596D007FE406 /* Supporting Files */,
+			);
+			path = "BEN-A6Tests";
+			sourceTree = "<group>";
+		};
+		AD538FE41ADE596D007FE406 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				AD538FE51ADE596D007FE406 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AD538FF31ADE5ABB007FE406 /* OBShapedButton */ = {
+			isa = PBXGroup;
+			children = (
+				AD538FF41ADE5ABB007FE406 /* OBShapedButton.h */,
+				AD538FF51ADE5ABB007FE406 /* OBShapedButton.m */,
+			);
+			name = OBShapedButton;
+			path = Supporting_Files/OBShapedButton;
+			sourceTree = "<group>";
+		};
+		AD538FF61ADE5ABB007FE406 /* UIImage+ColorAtPixel */ = {
+			isa = PBXGroup;
+			children = (
+				AD538FF71ADE5ABB007FE406 /* UIImage+ColorAtPixel.h */,
+				AD538FF81ADE5ABB007FE406 /* UIImage+ColorAtPixel.m */,
+			);
+			name = "UIImage+ColorAtPixel";
+			path = "Supporting_Files/UIImage+ColorAtPixel";
+			sourceTree = "<group>";
+		};
+		AD5390001ADE5B42007FE406 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				AD5390011ADE5B42007FE406 /* CaptureViewController.swift */,
+				AD5390091ADE73B1007FE406 /* LearnViewController.swift */,
+				AD53900B1ADE73BE007FE406 /* PredictViewController.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		AD5390021ADE5B42007FE406 /* Watson */ = {
+			isa = PBXGroup;
+			children = (
+				AD5390061ADE62E0007FE406 /* AskViewController.swift */,
+			);
+			path = Watson;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AD538FCA1ADE596C007FE406 /* BEN-A6 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AD538FEA1ADE596D007FE406 /* Build configuration list for PBXNativeTarget "BEN-A6" */;
+			buildPhases = (
+				AD538FC71ADE596C007FE406 /* Sources */,
+				AD538FC81ADE596C007FE406 /* Frameworks */,
+				AD538FC91ADE596C007FE406 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "BEN-A6";
+			productName = "BEN-A6";
+			productReference = AD538FCB1ADE596C007FE406 /* BEN-A6.app */;
+			productType = "com.apple.product-type.application";
+		};
+		AD538FDF1ADE596D007FE406 /* BEN-A6Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AD538FED1ADE596D007FE406 /* Build configuration list for PBXNativeTarget "BEN-A6Tests" */;
+			buildPhases = (
+				AD538FDC1ADE596D007FE406 /* Sources */,
+				AD538FDD1ADE596D007FE406 /* Frameworks */,
+				AD538FDE1ADE596D007FE406 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AD538FE21ADE596D007FE406 /* PBXTargetDependency */,
+			);
+			name = "BEN-A6Tests";
+			productName = "BEN-A6Tests";
+			productReference = AD538FE01ADE596D007FE406 /* BEN-A6Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AD538FC31ADE596C007FE406 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = "Team B.E.N.";
+				TargetAttributes = {
+					AD538FCA1ADE596C007FE406 = {
+						CreatedOnToolsVersion = 6.3;
+					};
+					AD538FDF1ADE596D007FE406 = {
+						CreatedOnToolsVersion = 6.3;
+						TestTargetID = AD538FCA1ADE596C007FE406;
+					};
+				};
+			};
+			buildConfigurationList = AD538FC61ADE596C007FE406 /* Build configuration list for PBXProject "BEN-A6" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AD538FC21ADE596C007FE406;
+			productRefGroup = AD538FCC1ADE596C007FE406 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AD538FCA1ADE596C007FE406 /* BEN-A6 */,
+				AD538FDF1ADE596D007FE406 /* BEN-A6Tests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AD538FC91ADE596C007FE406 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AD538FD61ADE596C007FE406 /* Main.storyboard in Resources */,
+				AD538FDB1ADE596C007FE406 /* LaunchScreen.xib in Resources */,
+				AD5390051ADE5E67007FE406 /* Info.plist in Resources */,
+				AD538FD81ADE596C007FE406 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AD538FDE1ADE596D007FE406 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AD538FC71ADE596C007FE406 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AD53900C1ADE73BE007FE406 /* PredictViewController.swift in Sources */,
+				AD5390071ADE62E0007FE406 /* AskViewController.swift in Sources */,
+				AD538FD31ADE596C007FE406 /* ViewController.swift in Sources */,
+				AD53900A1ADE73B1007FE406 /* LearnViewController.swift in Sources */,
+				AD538FFB1ADE5ABB007FE406 /* OBShapedButton.m in Sources */,
+				AD5390031ADE5B42007FE406 /* CaptureViewController.swift in Sources */,
+				AD538FFF1ADE5B09007FE406 /* MasterViewController.swift in Sources */,
+				AD538FD11ADE596C007FE406 /* AppDelegate.swift in Sources */,
+				AD538FFD1ADE5ABB007FE406 /* VideoAnalgesic.swift in Sources */,
+				AD538FFC1ADE5ABB007FE406 /* UIImage+ColorAtPixel.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AD538FDC1ADE596D007FE406 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AD538FE71ADE596D007FE406 /* BEN_A6Tests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AD538FE21ADE596D007FE406 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AD538FCA1ADE596C007FE406 /* BEN-A6 */;
+			targetProxy = AD538FE11ADE596D007FE406 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		AD538FD41ADE596C007FE406 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AD538FD51ADE596C007FE406 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		AD538FD91ADE596C007FE406 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AD538FDA1ADE596C007FE406 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		AD538FE81ADE596D007FE406 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		AD538FE91ADE596D007FE406 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AD538FEB1ADE596D007FE406 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "BEN-A6/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "BEN-A6/BridgingHeader.h";
+			};
+			name = Debug;
+		};
+		AD538FEC1ADE596D007FE406 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "BEN-A6/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "BEN-A6/BridgingHeader.h";
+			};
+			name = Release;
+		};
+		AD538FEE1ADE596D007FE406 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "BEN-A6Tests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BEN-A6.app/BEN-A6";
+			};
+			name = Debug;
+		};
+		AD538FEF1ADE596D007FE406 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "BEN-A6Tests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BEN-A6.app/BEN-A6";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AD538FC61ADE596C007FE406 /* Build configuration list for PBXProject "BEN-A6" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AD538FE81ADE596D007FE406 /* Debug */,
+				AD538FE91ADE596D007FE406 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AD538FEA1ADE596D007FE406 /* Build configuration list for PBXNativeTarget "BEN-A6" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AD538FEB1ADE596D007FE406 /* Debug */,
+				AD538FEC1ADE596D007FE406 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AD538FED1ADE596D007FE406 /* Build configuration list for PBXNativeTarget "BEN-A6Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AD538FEE1ADE596D007FE406 /* Debug */,
+				AD538FEF1ADE596D007FE406 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AD538FC31ADE596C007FE406 /* Project object */;
+}
