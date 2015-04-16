@@ -47,11 +47,19 @@ class AddLocationHandler(BaseHandler):
 		#	self.write("\n");
 
 class AddLabeledDataHandler(BaseHandler):
-	@tornado.web.asynchronous
+	# @tornado.web.asynchronous
 	def post(self):
 		'''getLocations
 		'''
 		data = json.loads(self.request.body);
+
+		dsid = data["dsid"];
+		label = data["label"];
+		feature = data["feature"];
+
+		dbid = self.db.labeledinstances.insert(
+			{"feature":feature,"label":label,"dsid":dsid}
+		);
 
 		# self.db.locations.insert(
 		# 	{"location":data["location"]}
@@ -61,7 +69,7 @@ class AddLabeledDataHandler(BaseHandler):
 		# 	array.append(a["location"]);
 
 		#for loc in array:
-		self.write_json(data);
+		self.write_json({"label":data["label"]});
 		#	self.write("\n");
 
 class AddLabeledInstanceHandler(BaseHandler):

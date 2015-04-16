@@ -11,6 +11,7 @@ import CoreLocation
 import CoreMotion
 
 class LearnViewController: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate, NSURLSessionTaskDelegate, CLLocationManagerDelegate, UITextFieldDelegate {
+    // UI elements
     @IBOutlet weak var image_learn: UIImageView!
     @IBOutlet weak var picker_location: UIPickerView!
     @IBOutlet weak var text_location: UITextField!
@@ -19,47 +20,58 @@ class LearnViewController: UIViewController,UIPickerViewDataSource,UIPickerViewD
     @IBOutlet weak var button_addLocation: UIButton!
     @IBOutlet weak var button_upload: UIButton!
     
-    
+    // gets gps data
     var locationManager: CLLocationManager! = nil
     var capturedLocation: CLLocationCoordinate2D! = nil
     var timer: NSTimer! = nil
     
+    // placeholders to store learning metadata
     var capturedImage: UIImage! = nil
-    var pickerData:NSMutableArray = ["Mozzarella","Gorgonzola","Provolone","Brie","Maytag Blue","Sharp Cheddar","Monterrey Jack","Stilton","Gouda","Goat Cheese", "Asiago"]
+    var pickerData:NSMutableArray = ["Peruna Statue","Dallas Hall Fountain","Blanton Fountain","Meadows School Fountain","Fondren Fountain","Meadows Museum Fountain","Centennial Fountain"]
     
     var capturedCameraPosition: CMAttitude! = nil
     var capturedMagneticField: CMCalibratedMagneticField! = nil
     var capturedTime: NSNumber = 0
     
+    // keeps track of currently selected location label
     var locationLabel: NSString = ""
     
-    let SERVER_URL: NSString = "http://guests-mac-mini-2.local:8000"
+    // session config
+//    let SERVER_URL: NSString = "http://guests-mac-mini-2.local:8000"
+    let SERVER_URL: NSString = "http://nicoles-macbook-pro.local:8000"
     let UPDATE_INTERVAL = 1/10.0
     
     var session: NSURLSession! = nil
     var taskID = 0
+    
+    // keeps track of errors
+    var errorCount = 0
+    var errorMsgs = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
         
+        // setup pickerview delegation
         picker_location.dataSource = self
         picker_location.delegate = self
         
+        // setup gps delegation
         locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
         
+        // setup textview delegation
         text_location.delegate = self
         
-        //setup NSURLSession (ephemeral)
+        //setup NSURLSession delegation (ephemeral)
         let sessionConfig: NSURLSessionConfiguration = NSURLSessionConfiguration.ephemeralSessionConfiguration()
         
-        sessionConfig.timeoutIntervalForRequest = 5.0;
-        sessionConfig.timeoutIntervalForResource = 8.0;
+        sessionConfig.timeoutIntervalForRequest = 25.0;
+        sessionConfig.timeoutIntervalForResource = 28.0;
         sessionConfig.HTTPMaximumConnectionsPerHost = 1;
         
         session = NSURLSession(configuration: sessionConfig, delegate: self, delegateQueue: nil)
@@ -68,6 +80,7 @@ class LearnViewController: UIViewController,UIPickerViewDataSource,UIPickerViewD
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+        // initialize data
         image_learn.image = capturedImage
         button_upload.backgroundColor = UIColor.clearColor()
         
@@ -82,17 +95,22 @@ class LearnViewController: UIViewController,UIPickerViewDataSource,UIPickerViewD
         timer.invalidate()
     }
     
+    // Called on: viewWillLoad
     func populatePickerData() {
+        // disable buttons while processing
+        button_upload.enabled = false
+        button_addLocation.enabled = false
         
-        // TODO
-        // API Call:
-        // 1) get location: []
-        
+        // completion handler: updates picker with new location labels
         getLocations( { (locations) -> Void in
             self.pickerData.removeAllObjects()
             self.pickerData.addObjectsFromArray(locations as! [AnyObject])
             
             self.picker_location.reloadAllComponents()
+            
+            // enable buttons after processing
+            self.button_upload.enabled = true
+            self.button_addLocation.enabled = true
         })
         
     }
@@ -104,6 +122,7 @@ class LearnViewController: UIViewController,UIPickerViewDataSource,UIPickerViewD
         return 1
     }
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        // +1 to account for 'add new data' element
         return pickerData.count+1
     }
     
@@ -113,26 +132,23 @@ class LearnViewController: UIViewController,UIPickerViewDataSource,UIPickerViewD
             return pickerData[row] as! String
         }
         else {
-            return "Add New Data"
+            return "<Add New Data>"
         }
     }
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         NSLog("picked")
+        
+        // toggle visibility of elements to 'add new location label' (on if last row in picker selected)
         if(row < pickerData.count){
             locationLabel = pickerData[row] as! NSString
             
-            //button_addLocation.enabled = false
             button_addLocation.hidden = true
-            
-            //text_location.userInteractionEnabled = false
             text_location.hidden = true
+            text_location.text = ""
         }
         else {
-            //button_addLocation.enabled = true
             button_addLocation.hidden = false
-            
-            //text_location.userInteractionEnabled = true
             text_location.hidden = false
         }
     }
@@ -144,13 +160,16 @@ class LearnViewController: UIViewController,UIPickerViewDataSource,UIPickerViewD
         locationManager.stopUpdatingLocation()
         if (error == nil) {
             NSLog("error: %s", error)
-            button_upload.enabled = false
+            //button_upload.enabled = false
         }
-//        else {
-//            button_upload.enabled = true
-//        }
+        else {
+            //button_upload.enabled = true
+            errorCount++
+            errorMsgs = errorMsgs + (NSString(format:"Error %d: Failed to get GPS data\n", errorCount) as String)
+        }
     }
     
+    // get gps location right after image capture
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         var locationArray = locations as NSArray
         var locationObj = locationArray.lastObject as! CLLocation
@@ -192,6 +211,7 @@ class LearnViewController: UIViewController,UIPickerViewDataSource,UIPickerViewD
         }
     }
     
+    // stop updating GPS after timer ends (multiple reads to ensure clean data / proper init)
     func turnOffGPS() {
         locationManager.stopUpdatingLocation()
     }
@@ -199,19 +219,28 @@ class LearnViewController: UIViewController,UIPickerViewDataSource,UIPickerViewD
     @IBAction func onClick_add(sender: UIButton) {
         self.view.endEditing(true)
         
-        // TODO
-        // API Calls:
-        // 1) add new location ( string )
+        errorCount = 0
+        errorMsgs = ""
+        
+        button_upload.enabled = false
+        button_addLocation.enabled = false
         
         addNewLocation(text_location.text, completionHandler: { (locations) -> Void in
             self.pickerData.removeAllObjects()
             self.pickerData.addObjectsFromArray(locations as! [AnyObject])
             
             self.picker_location.reloadAllComponents()
+            
+            // select last added label
+            self.picker_location.selectRow(self.pickerData.count - 1, inComponent: 0, animated: true)
+            
+            self.button_upload.enabled = true
+            self.button_addLocation.enabled = true
         })
         
     }
     
+    // handle textview delegation
     func textFieldShouldEndEditing(textField: UITextField) -> Bool {  //delegate method
         NSLog("end editing")
         textField.resignFirstResponder()
@@ -233,88 +262,107 @@ class LearnViewController: UIViewController,UIPickerViewDataSource,UIPickerViewD
     
     @IBAction func onClick_upload(sender: UIButton) {
         
-        //TODO:
-        // API Call:
-        // 1) send up image data
-        // update button background color with progress
-        // update text label with progress
+        // TODO: make sure captuerMagneticField, capturedTime, and locationLabel contain correct info
         
+        errorCount = 0
+        errorMsgs = ""
+        
+        // convert UIImage to NSData
         var imageData = UIImagePNGRepresentation(image_learn.image)
         let base64ImageString = imageData.base64EncodedStringWithOptions(.allZeros)
         
+        // build data dictionary
         var data: NSMutableDictionary = NSMutableDictionary()
-        data["img"] = "image data"//base64ImageString
+        data["img"] = base64ImageString
         data["gps"] = NSDictionary(dictionary: ["lat": capturedLocation.latitude, "long": capturedLocation.longitude])
         data["compass"] = NSDictionary(dictionary: ["x": capturedMagneticField.field.x, "y": capturedMagneticField.field.y, "z": capturedMagneticField.field.z])
-        data["time"] = "time"
+        data["time"] = capturedTime
         
-        sendFeatureData(data, l: locationLabel)
-        
+        // update text label with progress
+        // update button background color with progress
         button_upload.backgroundColor = UIColor.blueColor()
         self.text_progress.text = "Uploading"
+        
+        
+        if(locationLabel == ""){
+            errorCount++
+            errorMsgs = errorMsgs + (NSString(format:"Error %d: Need to select location label\n", errorCount) as String)
+            
+            text_progress.text = "Select location label"
+            button_upload.backgroundColor = UIColor.redColor()
+            
+            NSLog(errorMsgs)
+        }
+        else {
+            // API call
+            sendFeatureData(data, label: locationLabel)
+        }
+
     }
     
-    func sendFeatureData3( data: NSDictionary, label:NSString ) {
-        // Add a data point and a label to the database for the current dataset ID
-        
-        // setup the url
-        let baseURL: NSString = NSString(format: "%@/AddLearningData",SERVER_URL)
-        let postURL: NSURL = NSURL(string: baseURL as String)!
-        
-        // data to send in body of post request (send arguments as json)
-        var error: NSError?
-        var jsonUpload: NSDictionary = ["feature":data, "label": label,
-            "dsid":0]
-        
-        //TODO -> actually get dsid
-        
-        let requestBody: NSData! = NSJSONSerialization.dataWithJSONObject(jsonUpload, options: NSJSONWritingOptions.PrettyPrinted, error: &error)
-        
-        // create a custom HTTP POST request
-        let request: NSMutableURLRequest = NSMutableURLRequest(URL: postURL)
-        
-        request.HTTPMethod = "POST"
-        request.HTTPBody = requestBody
-        
-        // start the request, print the responses etc.
-        let postTrack: NSURLSessionDataTask = session.dataTaskWithRequest(request, completionHandler: { ( data:NSData!, response:NSURLResponse!, err:NSError! ) -> Void in
-            if(err == nil) {
-                NSLog("response: %@", response)
-                NSLog("data: %@",  NSString(data: data, encoding: NSUTF8StringEncoding)!)
-                
-                //                let jsonResponse: NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: 0, error: nil)
-                //                let results: NSDictionary = jsonResponse.valueForKey("locations")
-                
-                var responseData: NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as! NSDictionary
-                
-                var results: NSArray = responseData.valueForKey("location") as! NSArray
-                
-                dispatch_async(dispatch_get_main_queue()) {
-                    self.button_upload.backgroundColor = UIColor.greenColor()
-                    self.text_progress.text = "Successful Response"
-                }
-                
-            }
-                
-            else {
-                NSLog("response: %@", response)
-                NSLog("data: %@",  NSString(data: data, encoding: NSUTF8StringEncoding)!)
-                
-                dispatch_async(dispatch_get_main_queue()) {
-                    self.button_upload.backgroundColor = UIColor.redColor()
-                    self.text_progress.text = "Server Error: Failed to Connect"
-                }
-            }
-            
-        })
-        
-        postTrack.resume()
-        
-    }
+//    func sendFeatureData3( data: NSDictionary, label:NSString ) {
+//        // Add a data point and a label to the database for the current dataset ID
+//        
+//        // setup the url
+//        let baseURL: NSString = NSString(format: "%@/AddLearningData",SERVER_URL)
+//        let postURL: NSURL = NSURL(string: baseURL as String)!
+//        
+//        // data to send in body of post request (send arguments as json)
+//        var error: NSError?
+//        var jsonUpload: NSDictionary = ["feature":data, "label": label,
+//            "dsid":0]
+//        
+//        //TODO -> actually get dsid
+//        
+//        let requestBody: NSData! = NSJSONSerialization.dataWithJSONObject(jsonUpload, options: NSJSONWritingOptions.PrettyPrinted, error: &error)
+//        
+//        // create a custom HTTP POST request
+//        let request: NSMutableURLRequest = NSMutableURLRequest(URL: postURL)
+//        
+//        request.HTTPMethod = "POST"
+//        request.HTTPBody = requestBody
+//        
+//        // start the request, print the responses etc.
+//        let postTrack: NSURLSessionDataTask = session.dataTaskWithRequest(request, completionHandler: { ( data:NSData!, response:NSURLResponse!, err:NSError! ) -> Void in
+//            if(err == nil) {
+//                NSLog("response: %@", response)
+//                NSLog("data: %@",  NSString(data: data, encoding: NSUTF8StringEncoding)!)
+//                
+//                //                let jsonResponse: NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: 0, error: nil)
+//                //                let results: NSDictionary = jsonResponse.valueForKey("locations")
+//                
+//                var responseData: NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as! NSDictionary
+//                
+//                var results: NSArray = responseData.valueForKey("location") as! NSArray
+//                
+//                dispatch_async(dispatch_get_main_queue()) {
+//                    self.button_upload.backgroundColor = UIColor.greenColor()
+//                    self.text_progress.text = "Successful Response"
+//                }
+//                
+//            }
+//                
+//            else {
+//                NSLog("response: %@", response)
+//                NSLog("data: %@",  NSString(data: data, encoding: NSUTF8StringEncoding)!)
+//                
+//                dispatch_async(dispatch_get_main_queue()) {
+//                    self.button_upload.backgroundColor = UIColor.redColor()
+//                    self.text_progress.text = "Server Error: Failed to Connect"
+//                }
+//            }
+//            
+//        })
+//        
+//        postTrack.resume()
+//        
+//    }
 
     
-    func sendFeatureData( d: NSDictionary, l:NSString ) {
+    func sendFeatureData( data: NSDictionary, label:NSString ) {
         // Add a data point and a label to the database for the current dataset ID
+        
+        // TODO: get correct dsid
         
         // setup the url
         let baseURL: NSString = NSString(format: "%@/AddLearningData",SERVER_URL)
@@ -322,11 +370,12 @@ class LearnViewController: UIViewController,UIPickerViewDataSource,UIPickerViewD
         
         // data to send in body of post request (send arguments as json)
         var error: NSError?
-        var jsonUpload: NSDictionary = ["feature":d, "label": l, "dsid":0]
+//        var jsonUpload: NSDictionary = ["feature":data, "label": label, "dsid":0]
+        var jsonUpload: NSDictionary = ["feature":"data", "label": label, "dsid":0]
         
         let requestBody: NSData! = NSJSONSerialization.dataWithJSONObject(jsonUpload, options: NSJSONWritingOptions.PrettyPrinted, error: &error)
         
-        NSLog("request: %@",  NSString(data: requestBody, encoding: NSUTF8StringEncoding)!)
+//        NSLog("request: %@",  NSString(data: requestBody, encoding: NSUTF8StringEncoding)!)
         
         // create a custom HTTP POST request
         let request: NSMutableURLRequest = NSMutableURLRequest(URL: postURL)
@@ -335,6 +384,10 @@ class LearnViewController: UIViewController,UIPickerViewDataSource,UIPickerViewD
         request.HTTPBody = requestBody
         
         NSLog("requestBody: %@",  NSString(data: request.HTTPBody!, encoding: NSUTF8StringEncoding)!)
+        
+        // disable buttons while processing
+        button_upload.enabled = false
+        button_addLocation.enabled = false
         
         // start the request, print the responses etc.
         let postTrack: NSURLSessionDataTask = session.dataTaskWithRequest(request, completionHandler: { ( d:NSData!, response:NSURLResponse!, err:NSError! ) -> Void in
@@ -345,20 +398,52 @@ class LearnViewController: UIViewController,UIPickerViewDataSource,UIPickerViewD
                 //                let jsonResponse: NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: 0, error: nil)
                 //                let results: NSDictionary = jsonResponse.valueForKey("locations")
                 
-                var responseData: NSDictionary = NSJSONSerialization.JSONObjectWithData(d, options: NSJSONReadingOptions.MutableContainers, error: nil) as! NSDictionary
-                
-                //var results: NSArray = responseData.valueForKey("locations") as! NSArray
-                
-                dispatch_async(dispatch_get_main_queue()) {
-                    // do stuff
+                if let responseData: NSDictionary = NSJSONSerialization.JSONObjectWithData(d, options: NSJSONReadingOptions.MutableContainers, error: nil) as? NSDictionary {
+                    
+                    if let results: NSString = responseData["label"] as? NSString {
+                        
+                        dispatch_async(dispatch_get_main_queue()) {
+                            // do stuff
+                        }
+                        
+                    }
+                    else {
+                        self.errorCount++
+                        self.errorMsgs = self.errorMsgs + (NSString(format:"Error %d: Failed to get location label returned\n", self.errorCount) as String)
+                    }
+
+                    
                 }
-                
+                else {
+                    self.errorCount++
+                    self.errorMsgs = self.errorMsgs + (NSString(format:"Error %d: Server returned bad data\n", self.errorCount) as String)
+                }
             }
                 
             else {
+                self.errorCount++
+                self.errorMsgs = self.errorMsgs + (NSString(format:"Error %d: Failed to connect to server\n", self.errorCount) as String)
+            }
+            
+            if(self.errorCount > 0) {
                 dispatch_async(dispatch_get_main_queue()) {
-                    self.text_progress.text = "Server Error: Failed to Get Viable Locations"
+                    self.text_progress.text = NSString(format:"%d Errors Occured", self.errorCount) as String
+                    self.button_upload.backgroundColor = UIColor.redColor()
+                    
+                    NSLog(self.errorMsgs)
                 }
+            }
+            else {
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.text_progress.text = "Learning Upload Successful"
+                    self.button_upload.backgroundColor = UIColor.greenColor()
+                }
+            }
+            
+            dispatch_async(dispatch_get_main_queue()) {
+                // enable buttons after processing
+                self.button_upload.enabled = true
+                self.button_addLocation.enabled = true
             }
             
         })
@@ -460,30 +545,44 @@ class LearnViewController: UIViewController,UIPickerViewDataSource,UIPickerViewD
                         
                     }
                     else {
-                        completionHandler?([])
-                        dispatch_async(dispatch_get_main_queue()) {
-                            self.text_progress.text = "Server Error: Failed to Get Viable Locations"
-                        }
+                        self.errorCount++
+                        self.errorMsgs = self.errorMsgs + (NSString(format:"Error %d: Failed to get location labels\n", self.errorCount) as String)
+                        
                     }
                 }
                 
-                //var results: NSArray = responseData.valueForKey("locations") as! NSArray
-                
-                
                 
                 else {
-                    completionHandler?([])
-                    dispatch_async(dispatch_get_main_queue()) {
-                        self.text_progress.text = "Server Error: Failed to Get Viable Locations"
-                    }
+                    self.errorCount++
+                    self.errorMsgs = self.errorMsgs + (NSString(format:"Error %d: Failed to get data\n", self.errorCount) as String)
+                    
                 }
                 
             }
             
             else {
+                self.errorCount++
+                self.errorMsgs = self.errorMsgs + (NSString(format:"Error %d: Failed to connect to server\n", self.errorCount) as String)
+                
+            }
+            
+            if(self.errorCount > 0) {
                 completionHandler?([])
                 dispatch_async(dispatch_get_main_queue()) {
-                    self.text_progress.text = "Server Error: Failed to Get Viable Locations"
+                    self.text_progress.text = NSString(format:"%d Errors Occured", self.errorCount) as String
+                    self.locationLabel = ""
+                    
+                    self.button_upload.backgroundColor = UIColor.redColor()
+                    
+                    NSLog(self.errorMsgs)
+                    
+                    self.picker_location.reloadAllComponents()
+                    self.picker_location.selectRow(0, inComponent: 0, animated: true)
+                    self.button_addLocation.hidden = false
+                    self.text_location.hidden = false
+                    
+                    self.button_addLocation.enabled = true
+                    self.button_upload.enabled = true
                 }
             }
             
@@ -518,26 +617,58 @@ class LearnViewController: UIViewController,UIPickerViewDataSource,UIPickerViewD
                 NSLog("response: %@", response)
                 NSLog("data: %@",  NSString(data: data, encoding: NSUTF8StringEncoding)!)
                 
-//                let jsonResponse: NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: 0, error: nil)
-//                let results: NSDictionary = jsonResponse.valueForKey("locations")
-                
-                var responseData: NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as! NSDictionary
-                
-                var results: NSArray = responseData.valueForKey("locations") as! NSArray
-                
-                dispatch_async(dispatch_get_main_queue()) {
-                    // do stuff
+                if let responseData: NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as? NSDictionary {
+                    
+                    if let results: NSArray = (responseData.valueForKey("locations") as? NSArray) {
+                        
+                        dispatch_async(dispatch_get_main_queue()) {
+                            // do stuff
+                        }
+                        
+                        completionHandler?(results)
+                        
+                    }
+                    else {
+                        self.errorCount++
+                        self.errorMsgs = self.errorMsgs + (NSString(format:"Error %d: Failed to get location labels\n", self.errorCount) as String)
+                        
+                    }
                 }
-                
-                completionHandler?(results)
+                    
+                    
+                else {
+                    self.errorCount++
+                    self.errorMsgs = self.errorMsgs + (NSString(format:"Error %d: Failed to get data\n", self.errorCount) as String)
+                    
+                }
                 
             }
                 
             else {
+                self.errorCount++
+                self.errorMsgs = self.errorMsgs + (NSString(format:"Error %d: Failed to connect to server\n", self.errorCount) as String)
+                
+            }
+            
+            if(self.errorCount > 0) {
                 completionHandler?([])
                 dispatch_async(dispatch_get_main_queue()) {
-                    self.text_progress.text = "Server Error: Failed to Get Viable Locations"
+                    self.text_progress.text = NSString(format:"%d Errors Occured", self.errorCount) as String
+                    self.locationLabel = ""
+                    
+                    self.button_upload.backgroundColor = UIColor.redColor()
+                    
+                    NSLog(self.errorMsgs)
+                    
+                    self.picker_location.reloadAllComponents()
+                    self.picker_location.selectRow(0, inComponent: 0, animated: true)
+                    self.button_addLocation.hidden = false
+                    self.text_location.hidden = false
+                    
+                    self.button_addLocation.enabled = true
+                    self.button_upload.enabled = true
                 }
+                
             }
             
         })
