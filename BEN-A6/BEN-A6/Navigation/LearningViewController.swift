@@ -40,11 +40,12 @@ class LearningViewController: UIViewController,UIPickerViewDataSource,UIPickerVi
     
     // session config
     //    let SERVER_URL: NSString = "http://guests-mac-mini-2.local:8000"
-    let SERVER_URL: NSString = "http://nicoles-macbook-pro.local:8000"
+    var SERVER_URL: NSString = "http://nicoles-macbook-pro.local:8000"
     let UPDATE_INTERVAL = 1/10.0
     
     var session: NSURLSession! = nil
     var taskID = 0
+    var dsid = 0
     
     // keeps track of errors
     var errorCount = 0
@@ -81,6 +82,18 @@ class LearningViewController: UIViewController,UIPickerViewDataSource,UIPickerVi
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+
+        if let id = defaults.integerForKey("dsid") as Int? {
+            dsid = id
+        }
+        
+        if let serverURL = defaults.stringForKey("SERVER_URL") as String? {
+            SERVER_URL = serverURL
+        }
+        
         
         // initialize data
         image_learn.image = capturedImage
@@ -154,7 +167,7 @@ class LearningViewController: UIViewController,UIPickerViewDataSource,UIPickerVi
 //        data["img"] = base64ImageString
         data["gps"] = NSDictionary(dictionary: ["lat": capturedLocation.latitude, "long": capturedLocation.longitude])
         data["compass"] = NSDictionary(dictionary: ["x": capturedMagneticField.field.x, "y": capturedMagneticField.field.y, "z": capturedMagneticField.field.z])
-        data["time"] = capturedTime
+//        data["time"] = capturedTime
         
         // update text label with progress
         // update button background color with progress
@@ -195,7 +208,7 @@ class LearningViewController: UIViewController,UIPickerViewDataSource,UIPickerVi
         
         // data to send in body of post request (send arguments as json)
         var error: NSError?
-        var jsonUpload: NSDictionary = ["feature":data, "label": label, "dsid":0]
+        var jsonUpload: NSDictionary = ["feature":data, "label": label, "dsid":dsid]
 //        var jsonUpload: NSDictionary = ["feature":"data", "label": label, "dsid":0]
         
         let requestBody: NSData! = NSJSONSerialization.dataWithJSONObject(jsonUpload, options: NSJSONWritingOptions.PrettyPrinted, error: &error)
@@ -318,6 +331,10 @@ class LearningViewController: UIViewController,UIPickerViewDataSource,UIPickerVi
                             
                             self.button_addLocation.backgroundColor = UIColor.clearColor()
                             self.text_location.placeholder = ""
+                            
+                            if(self.pickerData.count > 0) {
+                                self.locationLabel = self.pickerData[0] as! NSString
+                            }
                         }
                         
 //                        completionHandler?(results)

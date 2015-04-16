@@ -43,7 +43,9 @@ class CaptureViewController: UIViewController {
         
         motionManager = CMMotionManager()
         if(motionManager.deviceMotionAvailable) {
+            motionManager.magnetometerUpdateInterval = 0.1
             motionManager.deviceMotionUpdateInterval = 0.1
+            motionManager.showsDeviceMovementDisplay = true
         }
         
     }
@@ -91,7 +93,7 @@ class CaptureViewController: UIViewController {
         })
         
         if(motionManager.deviceMotionAvailable) {
-            motionManager.startDeviceMotionUpdatesToQueue(NSOperationQueue.currentQueue()) {
+            motionManager.startDeviceMotionUpdatesUsingReferenceFrame(CMAttitudeReferenceFrame.XMagneticNorthZVertical, toQueue: NSOperationQueue.currentQueue(), withHandler: {
                 (deviceMotion, error) -> Void in
                 
                 self.capturedMagneticField = deviceMotion.magneticField
@@ -99,7 +101,16 @@ class CaptureViewController: UIViewController {
                 
                 NSLog(deviceMotion.description)
                 
-            }
+            })
+//            motionManager.startDeviceMotionUpdatesToQueueUsingReference(NSOperationQueue.currentQueue()) {
+//                (deviceMotion, error) -> Void in
+//                
+//                self.capturedMagneticField = deviceMotion.magneticField
+//                self.capturedPosition = deviceMotion.attitude
+//                
+//                NSLog(deviceMotion.description)
+//                
+//            }
         }
         
         self.videoManager.start()

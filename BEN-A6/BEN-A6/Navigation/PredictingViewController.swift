@@ -34,11 +34,12 @@ class PredictingViewController: UIViewController, CLLocationManagerDelegate, NSU
     
     // session config
     //    let SERVER_URL: NSString = "http://guests-mac-mini-2.local:8000"
-    let SERVER_URL: NSString = "http://nicoles-macbook-pro.local:8000"
+    var SERVER_URL: NSString = "http://nicoles-macbook-pro.local:8000"
     let UPDATE_INTERVAL = 1/10.0
     
     var session: NSURLSession! = nil
     var taskID = 0
+    var dsid = 0
     
     // keeps track of errors
     var errorCount = 0
@@ -67,6 +68,16 @@ class PredictingViewController: UIViewController, CLLocationManagerDelegate, NSU
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
+        if let id = defaults.integerForKey("dsid") as Int? {
+            dsid = id
+        }
+        
+        if let serverURL = defaults.stringForKey("SERVER_URL") as String? {
+            SERVER_URL = serverURL
+        }
         
         // initialize data
         image_predict.image = capturedImage
@@ -106,7 +117,7 @@ class PredictingViewController: UIViewController, CLLocationManagerDelegate, NSU
 //        data["img"] = base64ImageString
         data["gps"] = NSDictionary(dictionary: ["lat": capturedLocation.latitude, "long": capturedLocation.longitude])
         data["compass"] = NSDictionary(dictionary: ["x": capturedMagneticField.field.x, "y": capturedMagneticField.field.y, "z": capturedMagneticField.field.z])
-        data["time"] = capturedTime
+//        data["time"] = capturedTime
         
         // update text label with progress
         // update button background color with progress
@@ -220,15 +231,19 @@ class PredictingViewController: UIViewController, CLLocationManagerDelegate, NSU
 
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        let vc = segue.destinationViewController as! CaptureViewController
+        vc.switchMode = true
+        
     }
-    */
+
 
     
     
@@ -298,11 +313,6 @@ class PredictingViewController: UIViewController, CLLocationManagerDelegate, NSU
         locationManager.stopUpdatingLocation()
     }
 
-    
-    
-    
-    
-    
     
     
     

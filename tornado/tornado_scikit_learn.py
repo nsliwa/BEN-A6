@@ -46,6 +46,8 @@ class Application(tornado.web.Application):
                         sklearnhandlers.UploadLabeledDatapointHandler),
                     (r"/GetNewDatasetId[/]?",
                         sklearnhandlers.RequestNewDatasetId),
+                    (r"/GetCurrentDatasetId[/]?",
+                        questionhandlers.RequestCurrentDatasetId),
                     (r"/UpdateModel[/]?",
                         sklearnhandlers.UpdateModelForDatasetId),     
                     (r"/PredictOne[/]?",

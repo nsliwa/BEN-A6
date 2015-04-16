@@ -24,6 +24,7 @@
 		AD53900C1ADE73BE007FE406 /* PredictViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD53900B1ADE73BE007FE406 /* PredictViewController.swift */; };
 		AD53900E1AE02D4C007FE406 /* LearningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD53900D1AE02D4C007FE406 /* LearningViewController.swift */; };
 		AD5390101AE03CB8007FE406 /* PredictingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD53900F1AE03CB8007FE406 /* PredictingViewController.swift */; };
+		AD5390121AE048AE007FE406 /* AppInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = AD5390111AE048AE007FE406 /* AppInfo.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		AD53900B1ADE73BE007FE406 /* PredictViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PredictViewController.swift; sourceTree = "<group>"; };
 		AD53900D1AE02D4C007FE406 /* LearningViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearningViewController.swift; sourceTree = "<group>"; };
 		AD53900F1AE03CB8007FE406 /* PredictingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PredictingViewController.swift; sourceTree = "<group>"; };
+		AD5390111AE048AE007FE406 /* AppInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AppInfo.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				AD5390041ADE5E67007FE406 /* Info.plist */,
+				AD5390111AE048AE007FE406 /* AppInfo.plist */,
 				AD5390081ADE6504007FE406 /* BridgingHeader.h */,
 				AD538FF31ADE5ABB007FE406 /* OBShapedButton */,
 				AD538FF61ADE5ABB007FE406 /* UIImage+ColorAtPixel */,
@@ -264,6 +267,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD538FD61ADE596C007FE406 /* Main.storyboard in Resources */,
+				AD5390121AE048AE007FE406 /* AppInfo.plist in Resources */,
 				AD538FDB1ADE596C007FE406 /* LaunchScreen.xib in Resources */,
 				AD5390051ADE5E67007FE406 /* Info.plist in Resources */,
 				AD538FD81ADE596C007FE406 /* Images.xcassets in Resources */,

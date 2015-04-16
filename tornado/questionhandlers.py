@@ -152,3 +152,14 @@ class PredictionHandler(BaseHandler):
 		feature = data["feature"];
 
 		self.write_json({"label":"dummy label"});
+
+
+class RequestCurrentDatasetId(BaseHandler):
+	def get(self):
+		'''Get a new dataset ID for building a new dataset
+		'''
+		a = self.db.labeledinstances.find_one(sort=[("dsid", -1)])
+		sessionId = float(a['dsid']);
+		self.write_json({"dsid":sessionId})
+		#self.client.close()
+		

@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BEN-A6/Navigation/CaptureViewController.swift"
-            timestampString = "450880116.562256"
+            timestampString = "450905846.104053"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "196"
-            endingLineNumber = "196"
+            startingLineNumber = "207"
+            endingLineNumber = "207"
             landmarkName = "prepareForSegue(_:sender:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BEN-A6/Navigation/CaptureViewController.swift"
-            timestampString = "450880116.562256"
+            timestampString = "450905846.104053"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "197"
-            endingLineNumber = "197"
+            startingLineNumber = "208"
+            endingLineNumber = "208"
             landmarkName = "prepareForSegue(_:sender:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BEN-A6/Navigation/CaptureViewController.swift"
-            timestampString = "450880116.562256"
+            timestampString = "450905846.104053"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "198"
-            endingLineNumber = "198"
+            startingLineNumber = "209"
+            endingLineNumber = "209"
             landmarkName = "prepareForSegue(_:sender:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BEN-A6/Navigation/CaptureViewController.swift"
-            timestampString = "450880116.562256"
+            timestampString = "450905846.104053"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "194"
-            endingLineNumber = "194"
+            startingLineNumber = "205"
+            endingLineNumber = "205"
             landmarkName = "prepareForSegue(_:sender:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -106,11 +106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BEN-A6/Navigation/CaptureViewController.swift"
-            timestampString = "450880116.562256"
+            timestampString = "450905846.104053"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "200"
-            endingLineNumber = "200"
+            startingLineNumber = "211"
+            endingLineNumber = "211"
             landmarkName = "prepareForSegue(_:sender:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -713,22 +713,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BEN-A6/Navigation/CaptureViewController.swift"
-            timestampString = "450880131.29341"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
-            landmarkName = "viewWillAppear(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "BEN-A6/Navigation/LearnViewController.swift"
             timestampString = "450897898.84957"
             startingColumnNumber = "9223372036854775807"
@@ -794,7 +778,7 @@
                   moduleName = "BEN-A6"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/nicolesliwa/Documents/SMU/10-Spring_2015/7323-Mobile_Aps/TeamB.E.N.%20-%20A6/BEN-A6/BEN-A6/Navigation/LearnViewController.swift"
-                  timestampString = "450903749.936264"
+                  timestampString = "450909096.359912"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "115"
@@ -809,7 +793,7 @@
                   moduleName = "BEN-A6"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/nicolesliwa/Documents/SMU/10-Spring_2015/7323-Mobile_Aps/TeamB.E.N.%20-%20A6/BEN-A6/BEN-A6/Navigation/LearnViewController.swift"
-                  timestampString = "450903749.936523"
+                  timestampString = "450909096.360284"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "115"
@@ -817,6 +801,198 @@
                   offsetFromSymbolStart = "392">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BEN-A6/Navigation/CaptureViewController.swift"
+            timestampString = "450905963.314298"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
+            landmarkName = "viewWillAppear(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BEN-A6/Navigation/CaptureViewController.swift"
+            timestampString = "450905964.041147"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
+            landmarkName = "viewWillAppear(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BEN-A6/Navigation/CaptureViewController.swift"
+            timestampString = "450905969.255931"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
+            landmarkName = "viewWillAppear(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BEN-A6/Navigation/LearningViewController.swift"
+            timestampString = "450908060.502265"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
+            landmarkName = "viewWillAppear(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BEN-A6/MasterViewController.swift"
+            timestampString = "450908402.69991"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "getCurrentDSID()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BEN-A6/MasterViewController.swift"
+            timestampString = "450908591.0465"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
+            landmarkName = "getCurrentDSID()"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BEN_A6.MasterViewController.getCurrentDSID (BEN_A6.MasterViewController)() -&gt; ()"
+                  moduleName = "BEN-A6"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nicolesliwa/Documents/SMU/10-Spring_2015/7323-Mobile_Aps/TeamB.E.N.%20-%20A6/BEN-A6/BEN-A6/MasterViewController.swift"
+                  timestampString = "450909020.63347"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "78"
+                  endingLineNumber = "78"
+                  offsetFromSymbolStart = "572">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BEN_A6.MasterViewController.(getCurrentDSID (BEN_A6.MasterViewController) -&gt; () -&gt; ()).(closure #1)"
+                  moduleName = "BEN-A6"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nicolesliwa/Documents/SMU/10-Spring_2015/7323-Mobile_Aps/TeamB.E.N.%20-%20A6/BEN-A6/BEN-A6/MasterViewController.swift"
+                  timestampString = "450909020.633721"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "79"
+                  endingLineNumber = "79"
+                  offsetFromSymbolStart = "56">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BEN-A6/MasterViewController.swift"
+            timestampString = "450908581.689408"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "getCurrentDSID()"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BEN_A6.MasterViewController.getCurrentDSID (BEN_A6.MasterViewController)() -&gt; ()"
+                  moduleName = "BEN-A6"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nicolesliwa/Documents/SMU/10-Spring_2015/7323-Mobile_Aps/TeamB.E.N.%20-%20A6/BEN-A6/BEN-A6/MasterViewController.swift"
+                  timestampString = "450909020.636168"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "78"
+                  endingLineNumber = "78"
+                  offsetFromSymbolStart = "572">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BEN_A6.MasterViewController.(getCurrentDSID (BEN_A6.MasterViewController) -&gt; () -&gt; ()).(closure #1)"
+                  moduleName = "BEN-A6"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nicolesliwa/Documents/SMU/10-Spring_2015/7323-Mobile_Aps/TeamB.E.N.%20-%20A6/BEN-A6/BEN-A6/MasterViewController.swift"
+                  timestampString = "450909020.636468"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "79"
+                  endingLineNumber = "79"
+                  offsetFromSymbolStart = "56">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BEN-A6/MasterViewController.swift"
+            timestampString = "450908999.372311"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
+            landmarkName = "getCurrentDSID()"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
