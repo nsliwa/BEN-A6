@@ -99,7 +99,7 @@ class LearnHandler(BaseHandler):
 		dsid = self.get_int_arg("dsid",default=0);
 		
 		f=[];
-		for a in self.db.labeledinstances.find({"$and": [{"dsid": {"$exists": True}}, {"dsid": dsid}]):
+		for a in self.db.labeledinstances.find({"$and": [{"dsid": {"$exists": True}}, {"dsid": dsid}]}):
 			feature = a["feature"];
 			gps = feature["gps"];
 			compass = feature["compass"];
@@ -107,7 +107,7 @@ class LearnHandler(BaseHandler):
 			f.append([float(gps["lat"]),float(gps["long"]),float(compass["x"]),float(compass["y"]),float(compass["z"])]);
 
 		l=[];
-		for a in self.db.labeledinstances.find({"$and": [{"dsid": {"$exists": True}}, {"dsid": dsid}]):
+		for a in self.db.labeledinstances.find({"$and": [{"dsid": {"$exists": True}}, {"dsid": dsid}]}):
 			l.append(a["label"]);
 
 		c1 = svm.SVC();
