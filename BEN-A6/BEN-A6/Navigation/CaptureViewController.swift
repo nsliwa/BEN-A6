@@ -96,19 +96,21 @@ class CaptureViewController: UIViewController {
             motionManager.startDeviceMotionUpdatesUsingReferenceFrame(CMAttitudeReferenceFrame.XMagneticNorthZVertical, toQueue: NSOperationQueue.currentQueue(), withHandler: {
                 (deviceMotion, error) -> Void in
                 
-                if let magField = deviceMotion?.magneticField as CMCalibratedMagneticField? {
-                    self.capturedMagneticField = magField
-                }
-//                self.capturedMagneticField = deviceMotion.magneticField
-                if let attitude = deviceMotion?.attitude as CMAttitude? {
-                    self.capturedPosition = attitude
-                }
-//                self.capturedPosition = deviceMotion.attitude
+                if (error == nil) {
                 
-//                if let descr = deviceMotion?.description {
-//                    NSLog(descr)
-//                }
-            
+                    if let magField = deviceMotion?.magneticField as CMCalibratedMagneticField? {
+                        self.capturedMagneticField = magField
+                    }
+    //                self.capturedMagneticField = deviceMotion.magneticField
+                    if let attitude = deviceMotion?.attitude as CMAttitude? {
+                        self.capturedPosition = attitude
+                    }
+    //                self.capturedPosition = deviceMotion.attitude
+                    
+    //                if let descr = deviceMotion?.description {
+    //                    NSLog(descr)
+    //                }
+                }
                 
             })
 //            motionManager.startDeviceMotionUpdatesToQueueUsingReference(NSOperationQueue.currentQueue()) {

@@ -34,7 +34,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="learn_icon" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yta-IK-dem" customClass="OBShapedButton">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" restorationIdentifier="learn_icon" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yta-IK-dem" customClass="OBShapedButton">
                                 <rect key="frame" x="30" y="118" width="140" height="140"/>
                                 <state key="normal" image="learn_button">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
