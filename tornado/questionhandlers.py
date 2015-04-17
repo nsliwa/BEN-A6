@@ -99,7 +99,7 @@ class LearnHandler(BaseHandler):
 		dsid = self.get_int_arg("dsid",default=0);
 		
 		f=[];
-		for a in self.db.labeledinstances.find({"dsid": { "$exists": True } }):
+		for a in self.db.labeledinstances.find({"$and": [{"dsid": {"$exists": True}}, {"dsid": dsid}]):
 			feature = a["feature"];
 			gps = feature["gps"];
 			compass = feature["compass"];
@@ -107,7 +107,7 @@ class LearnHandler(BaseHandler):
 			f.append([float(gps["lat"]),float(gps["long"]),float(compass["x"]),float(compass["y"]),float(compass["z"])]);
 
 		l=[];
-		for a in self.db.labeledinstances.find({"dsid": { "$exists": True } }):
+		for a in self.db.labeledinstances.find({"$and": [{"dsid": {"$exists": True}}, {"dsid": dsid}]):
 			l.append(a["label"]);
 
 		c1 = svm.SVC();
@@ -160,8 +160,13 @@ class RequestCurrentDatasetId(BaseHandler):
 	def get(self):
 		'''Get a new dataset ID for building a new dataset
 		'''
-		a = self.db.labeledinstances.find_one(sort=[("dsid", -1)])
-		sessionId = float(a['dsid']);
-		self.write_json({"dsid":sessionId})
+		a = self.db.labeledinstances.find_one({"dsid":{"$exists": True}}).sort("dsid", -1);
+
+		if(a["dsid"] is None):
+			sessionId = 0.0;
+			self.write_json({"dsid":sessionId});
+		else:
+			sessionId = float(a['dsid']);
+			self.write_json({"dsid":sessionId});
 		#self.client.close()
 		
