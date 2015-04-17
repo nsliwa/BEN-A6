@@ -73,7 +73,7 @@ class AddLabeledInstanceHandler(BaseHandler):
 		#	self.write("\n");
 
 class AddLabeledInstanceHandler(BaseHandler):
-	@tornado.web.asynchronous
+	# @tornado.web.asynchronous
 	def post(self):
 		'''addLocation
 		'''
@@ -93,11 +93,15 @@ class AddLabeledInstanceHandler(BaseHandler):
 		self.write(data);
 
 class LearnHandler(BaseHandler):
-	def post(self):
+	def get(self):
 		'''learn
 		'''
-		print self.request.body;
 		dsid = self.get_int_arg("dsid",default=0);
+
+		# print self.request.body;
+		# data = json.loads(self.request.body);
+
+		# dsid = data["dsid"];
 		
 		f=[];
 		for a in self.db.labeledinstances.find({"$and": [{"dsid": {"$exists": True}}, {"dsid": dsid}]}):
@@ -138,7 +142,7 @@ class PredictionHandler(BaseHandler):
 		'''predict
 		'''
 		
-		data = json.loads(self.request.body);	
+		data = json.loads(self.request.body);
 
 		vals = data["feature"];
 		gps = vals["gps"];
@@ -154,7 +158,7 @@ class PredictionHandler(BaseHandler):
 			self.clf[dsid] = pickle.loads(tmp['model']);
 	
 		predLabel = self.clf[dsid].predict(fvals);
-		self.write_json({"label":str(predLabel)});
+		self.write_json({"label":str(predLabel[0])});
 
 
 class RequestCurrentDatasetId(BaseHandler):
@@ -166,8 +170,14 @@ class RequestCurrentDatasetId(BaseHandler):
 			self.write_json({"dsid":sessionId});
 		else:
 			#a = self.db.labeledinstances.find_one({"dsid":{"$exists": True}}).sort("dsid", -1);
-			a = self.db.labeledinstances.find_one(sort=[("dsid", -1)]);
-			sessionId = float(a['dsid'])+1;
-			self.write_json({"dsid":sessionId});
+			a = self.db.labeledinstances.find_one({"dsid": {"$exists": True}}, sort=[("dsid", -1)]);
+
+			if(a is None):
+				sessionId = 0.0;
+				self.write_json({"dsid":sessionId});
+			else:
+				print a["dsid"];
+				sessionId = float(a['dsid']);
+				self.write_json({"dsid":sessionId});
 		#self.client.close()
 		
