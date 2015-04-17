@@ -22,7 +22,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WPMainViewController : UIViewController
+@interface WPMainViewController : UIViewController <UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *questionTextField;
 

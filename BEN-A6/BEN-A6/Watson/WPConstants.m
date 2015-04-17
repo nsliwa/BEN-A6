@@ -41,9 +41,9 @@ NSString* const PATH_TO_EVIDENCE = @"question.evidencelist";
 NSString* const URL_WATSON_ASK_QUESTION_TEMPLATE = @"https://watson-wdc01.ihost.com/instance/%@/deepqa/v1/question";
 NSString* const WATSON_ASK_QUESTION_PAYLOAD_TEMPLATE = @"{\"question\": {\"questionText\": \"%@\"}}";
 
-NSString* const KEY_CONFIG_PLIST_USER = @"smu_student1";
-NSString* const KEY_CONFIG_PLIST_PASSWORD = @"QFbQTOcG";
-NSString* const KEY_CONFIG_PLIST_WATSON_INSTANCE_ID = @"520";
+NSString* const KEY_CONFIG_PLIST_USER = @"user";
+NSString* const KEY_CONFIG_PLIST_PASSWORD = @"password";
+NSString* const KEY_CONFIG_PLIST_WATSON_INSTANCE_ID = @"instance-id";
 
 NSString* const CONFIG_PLIST_FILE_NAME = @"config";
 NSString* const CONFIG_PLIST_EXTENSION = @"plist";

@@ -41,6 +41,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    _questionTextField.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning
@@ -54,6 +55,29 @@
     //Hide the keyboard
     [self.view endEditing:YES];
 }
+
+-(BOOL) textFieldShouldEndEditing:(UITextField *)textField
+{
+    NSLog(@"end editing");
+    [_questionTextField resignFirstResponder];
+    return true;
+}
+
+-(BOOL) textFieldShouldReturn:(UITextField *)textField
+{
+    
+    NSLog(@"should return");
+    [_questionTextField resignFirstResponder];
+    return true;
+}
+
+-(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    NSLog(@"Touches began");
+    [self.view endEditing:(true)];
+}
+
+
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {

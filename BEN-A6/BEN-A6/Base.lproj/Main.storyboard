@@ -141,11 +141,10 @@
                                 </state>
                                 <connections>
                                     <action selector="askWatsonButtonClicked:" destination="qlg-bb-PFA" eventType="touchUpInside" id="3Wl-Sm-Oap"/>
-                                    <action selector="onClick_ask:" destination="qlg-bb-PFA" eventType="touchUpInside" id="RKF-mE-Lf0"/>
-                                    <segue destination="svg-g8-y2U" kind="push" id="EDl-6g-4RN"/>
+                                    <segue destination="svg-g8-y2U" kind="push" identifier="showAnswerList" id="EDl-6g-4RN"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="23c-p2-yU0">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="23c-p2-yU0">
                                 <rect key="frame" x="19" y="301" width="285" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -155,19 +154,18 @@
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="y9C-Kg-Z4L" secondAttribute="trailing" constant="-6" id="0LY-Em-HPa"/>
                             <constraint firstItem="dBr-lH-5vV" firstAttribute="top" secondItem="PVx-t9-qfy" secondAttribute="bottom" constant="14" id="7Qv-B3-MT3"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="23c-p2-yU0" secondAttribute="trailing" constant="1" id="9t8-IE-Rry"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="23c-p2-yU0" secondAttribute="trailing" id="9t8-IE-Rry"/>
                             <constraint firstItem="IcU-hc-Q0l" firstAttribute="top" secondItem="dBr-lH-5vV" secondAttribute="bottom" constant="323" id="BnM-X0-5m7"/>
                             <constraint firstItem="dBr-lH-5vV" firstAttribute="leading" secondItem="edb-S3-2oY" secondAttribute="leadingMargin" constant="16" id="DKr-No-SWR"/>
-                            <constraint firstItem="23c-p2-yU0" firstAttribute="top" secondItem="dBr-lH-5vV" secondAttribute="bottom" constant="44" id="K8B-SR-moM"/>
+                            <constraint firstItem="23c-p2-yU0" firstAttribute="top" secondItem="dBr-lH-5vV" secondAttribute="bottom" constant="56" id="K8B-SR-moM"/>
                             <constraint firstItem="IcU-hc-Q0l" firstAttribute="top" secondItem="y9C-Kg-Z4L" secondAttribute="bottom" constant="129" id="M5Y-AP-Rnp"/>
                             <constraint firstItem="dBr-lH-5vV" firstAttribute="trailing" secondItem="edb-S3-2oY" secondAttribute="trailingMargin" id="WDo-xm-Kfx"/>
-                            <constraint firstItem="23c-p2-yU0" firstAttribute="leading" secondItem="edb-S3-2oY" secondAttribute="leadingMargin" constant="2" id="f0c-2q-wBl"/>
+                            <constraint firstItem="23c-p2-yU0" firstAttribute="leading" secondItem="edb-S3-2oY" secondAttribute="leadingMargin" constant="3" id="f0c-2q-wBl"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="bIA-wZ-5xR"/>
                     <connections>
                         <outlet property="questionTextField" destination="23c-p2-yU0" id="zbu-UV-iiU"/>
-                        <outlet property="text_ask" destination="23c-p2-yU0" id="BL1-lu-VZi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7sb-ee-GZB" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -629,7 +627,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="erk-ty-UVn" kind="push" id="cwC-GE-gZf"/>
+                                    <segue destination="erk-ty-UVn" kind="push" identifier="ShowResultDetails" id="cwC-GE-gZf"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

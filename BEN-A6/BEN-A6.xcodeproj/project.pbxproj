@@ -25,13 +25,14 @@
 		AD5390101AE03CB8007FE406 /* PredictingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD53900F1AE03CB8007FE406 /* PredictingViewController.swift */; };
 		AD5390121AE048AE007FE406 /* AppInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = AD5390111AE048AE007FE406 /* AppInfo.plist */; };
 		AD53902A1AE0AA06007FE406 /* WPWatsonQuestionResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5390291AE0AA06007FE406 /* WPWatsonQuestionResponse.m */; };
+		AD61A7BA1AE1A18A0022A7C6 /* fake.json in Resources */ = {isa = PBXBuildFile; fileRef = AD61A7B81AE1A18A0022A7C6 /* fake.json */; };
+		AD61A7BC1AE1A93F0022A7C6 /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = AD61A7BB1AE1A93F0022A7C6 /* config.plist */; };
 		EFFA55A61AE18FE20004FD89 /* WPConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = EFFA559B1AE18FE20004FD89 /* WPConstants.m */; };
 		EFFA55A71AE18FE20004FD89 /* WPMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFFA559D1AE18FE20004FD89 /* WPMainViewController.m */; };
 		EFFA55A81AE18FE20004FD89 /* WPResultsDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFFA559F1AE18FE20004FD89 /* WPResultsDetailsViewController.m */; };
 		EFFA55A91AE18FE20004FD89 /* WPResultsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFFA55A11AE18FE20004FD89 /* WPResultsTableViewController.m */; };
 		EFFA55AA1AE18FE20004FD89 /* WPUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = EFFA55A31AE18FE20004FD89 /* WPUtils.m */; };
 		EFFA55AB1AE18FE20004FD89 /* WPWatson.m in Sources */ = {isa = PBXBuildFile; fileRef = EFFA55A51AE18FE20004FD89 /* WPWatson.m */; };
-		EFFA55AE1AE18FF70004FD89 /* fake.json in Resources */ = {isa = PBXBuildFile; fileRef = EFFA55AC1AE18FF70004FD89 /* fake.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,7 +71,9 @@
 		AD5390111AE048AE007FE406 /* AppInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AppInfo.plist; sourceTree = "<group>"; };
 		AD5390281AE0AA06007FE406 /* WPWatsonQuestionResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPWatsonQuestionResponse.h; sourceTree = "<group>"; };
 		AD5390291AE0AA06007FE406 /* WPWatsonQuestionResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPWatsonQuestionResponse.m; sourceTree = "<group>"; };
-		EFFA55991AE18FE20004FD89 /* WatsonPhotography-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WatsonPhotography-Prefix.pch"; sourceTree = "<group>"; };
+		AD61A7B81AE1A18A0022A7C6 /* fake.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = fake.json; path = Supporting_Files/fake.json; sourceTree = "<group>"; };
+		AD61A7B91AE1A18A0022A7C6 /* WatsonPhotography-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "WatsonPhotography-Prefix.pch"; path = "Supporting_Files/WatsonPhotography-Prefix.pch"; sourceTree = "<group>"; };
+		AD61A7BB1AE1A93F0022A7C6 /* config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = config.plist; sourceTree = "<group>"; };
 		EFFA559A1AE18FE20004FD89 /* WPConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPConstants.h; sourceTree = "<group>"; };
 		EFFA559B1AE18FE20004FD89 /* WPConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPConstants.m; sourceTree = "<group>"; };
 		EFFA559C1AE18FE20004FD89 /* WPMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPMainViewController.h; sourceTree = "<group>"; };
@@ -83,8 +86,6 @@
 		EFFA55A31AE18FE20004FD89 /* WPUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPUtils.m; sourceTree = "<group>"; };
 		EFFA55A41AE18FE20004FD89 /* WPWatson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPWatson.h; sourceTree = "<group>"; };
 		EFFA55A51AE18FE20004FD89 /* WPWatson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPWatson.m; sourceTree = "<group>"; };
-		EFFA55AC1AE18FF70004FD89 /* fake.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = fake.json; sourceTree = "<group>"; };
-		EFFA55AD1AE18FF70004FD89 /* WatsonPhotography-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WatsonPhotography-Prefix.pch"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,8 +143,9 @@
 		AD538FCE1ADE596C007FE406 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				EFFA55AC1AE18FF70004FD89 /* fake.json */,
-				EFFA55AD1AE18FF70004FD89 /* WatsonPhotography-Prefix.pch */,
+				AD61A7BB1AE1A93F0022A7C6 /* config.plist */,
+				AD61A7B81AE1A18A0022A7C6 /* fake.json */,
+				AD61A7B91AE1A18A0022A7C6 /* WatsonPhotography-Prefix.pch */,
 				AD5390041ADE5E67007FE406 /* Info.plist */,
 				AD5390111AE048AE007FE406 /* AppInfo.plist */,
 				AD5390081ADE6504007FE406 /* BridgingHeader.h */,
@@ -206,7 +208,6 @@
 		AD5390021ADE5B42007FE406 /* Watson */ = {
 			isa = PBXGroup;
 			children = (
-				EFFA55991AE18FE20004FD89 /* WatsonPhotography-Prefix.pch */,
 				EFFA559A1AE18FE20004FD89 /* WPConstants.h */,
 				EFFA559B1AE18FE20004FD89 /* WPConstants.m */,
 				EFFA559C1AE18FE20004FD89 /* WPMainViewController.h */,
@@ -305,7 +306,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EFFA55AE1AE18FF70004FD89 /* fake.json in Resources */,
+				AD61A7BC1AE1A93F0022A7C6 /* config.plist in Resources */,
+				AD61A7BA1AE1A18A0022A7C6 /* fake.json in Resources */,
 				AD538FD61ADE596C007FE406 /* Main.storyboard in Resources */,
 				AD5390121AE048AE007FE406 /* AppInfo.plist in Resources */,
 				AD538FDB1ADE596C007FE406 /* LaunchScreen.xib in Resources */,
@@ -473,7 +475,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "BEN-A6/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "BEN-A6/BridgingHeader.h";
@@ -486,7 +488,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "BEN-A6/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "BEN-A6/BridgingHeader.h";
