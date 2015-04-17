@@ -19,12 +19,19 @@
 		AD538FFF1ADE5B09007FE406 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD538FFE1ADE5B09007FE406 /* MasterViewController.swift */; };
 		AD5390031ADE5B42007FE406 /* CaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5390011ADE5B42007FE406 /* CaptureViewController.swift */; };
 		AD5390051ADE5E67007FE406 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AD5390041ADE5E67007FE406 /* Info.plist */; };
-		AD5390071ADE62E0007FE406 /* AskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5390061ADE62E0007FE406 /* AskViewController.swift */; };
 		AD53900A1ADE73B1007FE406 /* LearnViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5390091ADE73B1007FE406 /* LearnViewController.swift */; };
 		AD53900C1ADE73BE007FE406 /* PredictViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD53900B1ADE73BE007FE406 /* PredictViewController.swift */; };
 		AD53900E1AE02D4C007FE406 /* LearningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD53900D1AE02D4C007FE406 /* LearningViewController.swift */; };
 		AD5390101AE03CB8007FE406 /* PredictingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD53900F1AE03CB8007FE406 /* PredictingViewController.swift */; };
 		AD5390121AE048AE007FE406 /* AppInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = AD5390111AE048AE007FE406 /* AppInfo.plist */; };
+		AD5390151AE06B75007FE406 /* WPConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5390141AE06B75007FE406 /* WPConstants.m */; };
+		AD5390181AE06CAD007FE406 /* WPUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5390171AE06CAD007FE406 /* WPUtils.m */; };
+		AD53901B1AE06CE0007FE406 /* WPWatson.m in Sources */ = {isa = PBXBuildFile; fileRef = AD53901A1AE06CE0007FE406 /* WPWatson.m */; };
+		AD53901E1AE06DA3007FE406 /* WPResultsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD53901D1AE06DA3007FE406 /* WPResultsTableViewController.m */; };
+		AD5390211AE06DAC007FE406 /* WPResultsDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5390201AE06DAC007FE406 /* WPResultsDetailsViewController.m */; };
+		AD5390231AE06ED9007FE406 /* fake.json in Resources */ = {isa = PBXBuildFile; fileRef = AD5390221AE06ED9007FE406 /* fake.json */; };
+		AD5390271AE0764A007FE406 /* WPMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5390261AE0764A007FE406 /* WPMainViewController.m */; };
+		AD53902A1AE0AA06007FE406 /* WPWatsonQuestionResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5390291AE0AA06007FE406 /* WPWatsonQuestionResponse.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,13 +62,28 @@
 		AD538FFE1ADE5B09007FE406 /* MasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
 		AD5390011ADE5B42007FE406 /* CaptureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureViewController.swift; sourceTree = "<group>"; };
 		AD5390041ADE5E67007FE406 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AD5390061ADE62E0007FE406 /* AskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AskViewController.swift; sourceTree = "<group>"; };
 		AD5390081ADE6504007FE406 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
 		AD5390091ADE73B1007FE406 /* LearnViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnViewController.swift; sourceTree = "<group>"; };
 		AD53900B1ADE73BE007FE406 /* PredictViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PredictViewController.swift; sourceTree = "<group>"; };
 		AD53900D1AE02D4C007FE406 /* LearningViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearningViewController.swift; sourceTree = "<group>"; };
 		AD53900F1AE03CB8007FE406 /* PredictingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PredictingViewController.swift; sourceTree = "<group>"; };
 		AD5390111AE048AE007FE406 /* AppInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AppInfo.plist; sourceTree = "<group>"; };
+		AD5390131AE06B75007FE406 /* WPConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WPConstants.h; path = "../../../../../../../../Desktop/watson-photography-ios-master/WatsonPhotography/WPConstants.h"; sourceTree = "<group>"; };
+		AD5390141AE06B75007FE406 /* WPConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WPConstants.m; path = "../../../../../../../../Desktop/watson-photography-ios-master/WatsonPhotography/WPConstants.m"; sourceTree = "<group>"; };
+		AD5390161AE06CAD007FE406 /* WPUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WPUtils.h; path = "../../../../../../../../Desktop/watson-photography-ios-master/WatsonPhotography/WPUtils.h"; sourceTree = "<group>"; };
+		AD5390171AE06CAD007FE406 /* WPUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WPUtils.m; path = "../../../../../../../../Desktop/watson-photography-ios-master/WatsonPhotography/WPUtils.m"; sourceTree = "<group>"; };
+		AD5390191AE06CE0007FE406 /* WPWatson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WPWatson.h; path = "../../../../../../../../Desktop/watson-photography-ios-master/WatsonPhotography/WPWatson.h"; sourceTree = "<group>"; };
+		AD53901A1AE06CE0007FE406 /* WPWatson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WPWatson.m; path = "../../../../../../../../Desktop/watson-photography-ios-master/WatsonPhotography/WPWatson.m"; sourceTree = "<group>"; };
+		AD53901C1AE06DA3007FE406 /* WPResultsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WPResultsTableViewController.h; path = "../../../../../../../../Desktop/watson-photography-ios-master/WatsonPhotography/WPResultsTableViewController.h"; sourceTree = "<group>"; };
+		AD53901D1AE06DA3007FE406 /* WPResultsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WPResultsTableViewController.m; path = "../../../../../../../../Desktop/watson-photography-ios-master/WatsonPhotography/WPResultsTableViewController.m"; sourceTree = "<group>"; };
+		AD53901F1AE06DAC007FE406 /* WPResultsDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WPResultsDetailsViewController.h; path = "../../../../../../../../Desktop/watson-photography-ios-master/WatsonPhotography/WPResultsDetailsViewController.h"; sourceTree = "<group>"; };
+		AD5390201AE06DAC007FE406 /* WPResultsDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WPResultsDetailsViewController.m; path = "../../../../../../../../Desktop/watson-photography-ios-master/WatsonPhotography/WPResultsDetailsViewController.m"; sourceTree = "<group>"; };
+		AD5390221AE06ED9007FE406 /* fake.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = fake.json; path = "../../../../../../../Desktop/watson-photography-ios-master/WatsonPhotography/fake.json"; sourceTree = "<group>"; };
+		AD5390241AE06F06007FE406 /* WatsonPhotography-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "WatsonPhotography-Prefix.pch"; path = "../../../../../../../Desktop/watson-photography-ios-master/WatsonPhotography/WatsonPhotography-Prefix.pch"; sourceTree = "<group>"; };
+		AD5390251AE0764A007FE406 /* WPMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WPMainViewController.h; path = "../../../../../../../../Desktop/watson-photography-ios-master/WatsonPhotography/WPMainViewController.h"; sourceTree = "<group>"; };
+		AD5390261AE0764A007FE406 /* WPMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WPMainViewController.m; path = "../../../../../../../../Desktop/watson-photography-ios-master/WatsonPhotography/WPMainViewController.m"; sourceTree = "<group>"; };
+		AD5390281AE0AA06007FE406 /* WPWatsonQuestionResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPWatsonQuestionResponse.h; sourceTree = "<group>"; };
+		AD5390291AE0AA06007FE406 /* WPWatsonQuestionResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPWatsonQuestionResponse.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +141,8 @@
 		AD538FCE1ADE596C007FE406 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AD5390241AE06F06007FE406 /* WatsonPhotography-Prefix.pch */,
+				AD5390221AE06ED9007FE406 /* fake.json */,
 				AD5390041ADE5E67007FE406 /* Info.plist */,
 				AD5390111AE048AE007FE406 /* AppInfo.plist */,
 				AD5390081ADE6504007FE406 /* BridgingHeader.h */,
@@ -181,7 +205,20 @@
 		AD5390021ADE5B42007FE406 /* Watson */ = {
 			isa = PBXGroup;
 			children = (
-				AD5390061ADE62E0007FE406 /* AskViewController.swift */,
+				AD5390251AE0764A007FE406 /* WPMainViewController.h */,
+				AD5390261AE0764A007FE406 /* WPMainViewController.m */,
+				AD53901F1AE06DAC007FE406 /* WPResultsDetailsViewController.h */,
+				AD5390201AE06DAC007FE406 /* WPResultsDetailsViewController.m */,
+				AD53901C1AE06DA3007FE406 /* WPResultsTableViewController.h */,
+				AD53901D1AE06DA3007FE406 /* WPResultsTableViewController.m */,
+				AD5390191AE06CE0007FE406 /* WPWatson.h */,
+				AD53901A1AE06CE0007FE406 /* WPWatson.m */,
+				AD5390161AE06CAD007FE406 /* WPUtils.h */,
+				AD5390171AE06CAD007FE406 /* WPUtils.m */,
+				AD5390281AE0AA06007FE406 /* WPWatsonQuestionResponse.h */,
+				AD5390291AE0AA06007FE406 /* WPWatsonQuestionResponse.m */,
+				AD5390131AE06B75007FE406 /* WPConstants.h */,
+				AD5390141AE06B75007FE406 /* WPConstants.m */,
 			);
 			path = Watson;
 			sourceTree = "<group>";
@@ -266,6 +303,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD5390231AE06ED9007FE406 /* fake.json in Resources */,
 				AD538FD61ADE596C007FE406 /* Main.storyboard in Resources */,
 				AD5390121AE048AE007FE406 /* AppInfo.plist in Resources */,
 				AD538FDB1ADE596C007FE406 /* LaunchScreen.xib in Resources */,
@@ -290,13 +328,19 @@
 			files = (
 				AD53900C1ADE73BE007FE406 /* PredictViewController.swift in Sources */,
 				AD53900E1AE02D4C007FE406 /* LearningViewController.swift in Sources */,
-				AD5390071ADE62E0007FE406 /* AskViewController.swift in Sources */,
+				AD5390271AE0764A007FE406 /* WPMainViewController.m in Sources */,
+				AD5390211AE06DAC007FE406 /* WPResultsDetailsViewController.m in Sources */,
 				AD538FD31ADE596C007FE406 /* ViewController.swift in Sources */,
+				AD53902A1AE0AA06007FE406 /* WPWatsonQuestionResponse.m in Sources */,
+				AD5390151AE06B75007FE406 /* WPConstants.m in Sources */,
 				AD53900A1ADE73B1007FE406 /* LearnViewController.swift in Sources */,
+				AD53901B1AE06CE0007FE406 /* WPWatson.m in Sources */,
 				AD538FFB1ADE5ABB007FE406 /* OBShapedButton.m in Sources */,
 				AD5390031ADE5B42007FE406 /* CaptureViewController.swift in Sources */,
+				AD53901E1AE06DA3007FE406 /* WPResultsTableViewController.m in Sources */,
 				AD538FFF1ADE5B09007FE406 /* MasterViewController.swift in Sources */,
 				AD538FD11ADE596C007FE406 /* AppDelegate.swift in Sources */,
+				AD5390181AE06CAD007FE406 /* WPUtils.m in Sources */,
 				AD5390101AE03CB8007FE406 /* PredictingViewController.swift in Sources */,
 				AD538FFD1ADE5ABB007FE406 /* VideoAnalgesic.swift in Sources */,
 				AD538FFC1ADE5ABB007FE406 /* UIImage+ColorAtPixel.m in Sources */,

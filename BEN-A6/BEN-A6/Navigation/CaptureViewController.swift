@@ -73,17 +73,17 @@ class CaptureViewController: UIViewController {
         self.videoManager.setProcessingBlock( { (imageInput) -> (CIImage) in
             
             
-            var orientation = UIApplication.sharedApplication().statusBarOrientation
-            
-            if(self.videoManager.getCapturePosition() == AVCaptureDevicePosition.Back) {
-                if(orientation == UIInterfaceOrientation.LandscapeLeft) {
-                    orientation = UIInterfaceOrientation.LandscapeRight;
-                }
-                else if(orientation == UIInterfaceOrientation.LandscapeRight) {
-                    orientation = UIInterfaceOrientation.LandscapeLeft;
-                }
-                
-            }
+//            var orientation = UIApplication.sharedApplication().statusBarOrientation
+//            
+//            if(self.videoManager.getCapturePosition() == AVCaptureDevicePosition.Back) {
+//                if(orientation == UIInterfaceOrientation.LandscapeLeft) {
+//                    orientation = UIInterfaceOrientation.LandscapeRight;
+//                }
+//                else if(orientation == UIInterfaceOrientation.LandscapeRight) {
+//                    orientation = UIInterfaceOrientation.LandscapeLeft;
+//                }
+//                
+//            }
             
             var img = imageInput
             
@@ -96,10 +96,19 @@ class CaptureViewController: UIViewController {
             motionManager.startDeviceMotionUpdatesUsingReferenceFrame(CMAttitudeReferenceFrame.XMagneticNorthZVertical, toQueue: NSOperationQueue.currentQueue(), withHandler: {
                 (deviceMotion, error) -> Void in
                 
-                self.capturedMagneticField = deviceMotion.magneticField
-                self.capturedPosition = deviceMotion.attitude
+                if let magField = deviceMotion?.magneticField as CMCalibratedMagneticField? {
+                    self.capturedMagneticField = magField
+                }
+//                self.capturedMagneticField = deviceMotion.magneticField
+                if let attitude = deviceMotion?.attitude as CMAttitude? {
+                    self.capturedPosition = attitude
+                }
+//                self.capturedPosition = deviceMotion.attitude
                 
-                NSLog(deviceMotion.description)
+//                if let descr = deviceMotion?.description {
+//                    NSLog(descr)
+//                }
+            
                 
             })
 //            motionManager.startDeviceMotionUpdatesToQueueUsingReference(NSOperationQueue.currentQueue()) {

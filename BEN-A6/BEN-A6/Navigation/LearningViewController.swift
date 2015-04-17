@@ -5,6 +5,7 @@
 //  Created by Nicole Sliwa on 4/16/15.
 //  Copyright (c) 2015 Team B.E.N. All rights reserved.
 //
+// Tutorial for moving textView with keyboard: http://stackoverflow.com/questions/25693130/move-textfield-when-keyboard-appears-swift
 
 import UIKit
 import CoreLocation
@@ -20,6 +21,9 @@ class LearningViewController: UIViewController,UIPickerViewDataSource,UIPickerVi
     
     @IBOutlet weak var button_addLocation: UIButton!
     @IBOutlet weak var button_upload: UIButton!
+    
+//    // This constraint ties an element at zero points from the bottom layout guide
+//    @IBOutlet var keyboardHeightLayoutConstraint: NSLayoutConstraint?
     
     // gets gps data
     var locationManager: CLLocationManager! = nil
@@ -78,11 +82,15 @@ class LearningViewController: UIViewController,UIPickerViewDataSource,UIPickerVi
         sessionConfig.HTTPMaximumConnectionsPerHost = 1;
         
         session = NSURLSession(configuration: sessionConfig, delegate: self, delegateQueue: nil)
+        
+//        //setup notification for keyboard appear/disappear
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardNotification:", name: UIKeyboardWillChangeFrameNotification, object: nil)
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+        registerForKeyboardNotifications()
         
         let defaults = NSUserDefaults.standardUserDefaults()
 
@@ -90,8 +98,11 @@ class LearningViewController: UIViewController,UIPickerViewDataSource,UIPickerVi
             dsid = id
         }
         
-        if let serverURL = defaults.stringForKey("SERVER_URL") as String? {
+        if let serverURL = defaults.stringForKey("Server_URL") as String? {
             SERVER_URL = serverURL
+        }
+        else {
+            NSLog("error in learning")
         }
         
         
@@ -107,8 +118,14 @@ class LearningViewController: UIViewController,UIPickerViewDataSource,UIPickerVi
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         
+        deregisterFromKeyboardNotifications()
+        
         timer.invalidate()
     }
+    
+//    deinit {
+//        NSNotificationCenter.defaultCenter().removeObserver(self)
+//    }
     
     // Called on: viewWillLoad
     func populatePickerData() {
@@ -667,5 +684,66 @@ class LearningViewController: UIViewController,UIPickerViewDataSource,UIPickerVi
         }
     }
     
+    
+    
+//    // Move textView for keyboard
+//    func keyboardNotification(notification: NSNotification) {
+//        if let userInfo = notification.userInfo {
+//            let endFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.CGRectValue()
+//            let duration:NSTimeInterval = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
+//            let animationCurveRawNSN = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber
+//            let animationCurveRaw = animationCurveRawNSN?.unsignedLongValue ?? UIViewAnimationOptions.CurveEaseInOut.rawValue
+//            let animationCurve:UIViewAnimationOptions = UIViewAnimationOptions(rawValue: animationCurveRaw)
+//            self.keyboardHeightLayoutConstraint?.constant = endFrame?.size.height ?? 0.0
+//            UIView.animateWithDuration(duration,
+//                delay: NSTimeInterval(0),
+//                options: animationCurve,
+//                animations: { self.view.layoutIfNeeded() },
+//                completion: nil)
+//        }
+//    }
+    
+    
+    func registerForKeyboardNotifications() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWasShown:", name: UIKeyboardWillShowNotification, object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillBeHidden:", name: UIKeyboardWillHideNotification, object: nil)
+        
+    }
+    
+    func deregisterFromKeyboardNotifications() {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
+    }
+    
+    func keyboardWasShown(notification: NSNotification) {
+        
+        self.view.frame.origin.y -= 220
+//        let info: NSDictionary = notification.userInfo!
+//        let keyboardSize: CGSize = info.objectForKey(UIKeyboardFrameBeginUserInfoKey)?.CGRectValue().size()!
+//        let buttonOrigin: CGPoint = button_addLocation.frame.origin
+//        let buttonHeight: CGFloat = button_addLocation.frame.size.height
+//        let visibleRect: CGRect = self.view.frame
+//        visibleRect.size.height = visibleRect.size.height -  keyboardSize.height
+//        
+//        if( !CGRectContainsPoint(visibleRect, buttonOrigin) ) {
+//            let scrollPoint: CGPoint = CGPointMake(0.0, buttonOrigin.y - visibleRect.size.height + buttonHeight)
+//            scrollView.setContentOffset(scrollPoint, animated:true)
+//        }
+//        
+    }
+    
+    func keyboardWillBeHidden(notification: NSNotification) {
+        
+        self.view.frame.origin.y += 220
+        
+    }
+//
+//    
+//    - (void)keyboardWillBeHidden:(NSNotification *)notification {
+//    
+//    [self.scrollView setContentOffset:CGPointZero animated:YES];
+//    
+//    }
     
 }

@@ -75,8 +75,11 @@ class PredictingViewController: UIViewController, CLLocationManagerDelegate, NSU
             dsid = id
         }
         
-        if let serverURL = defaults.stringForKey("SERVER_URL") as String? {
+        if let serverURL = defaults.stringForKey("Server_URL") as String? {
             SERVER_URL = serverURL
+        }
+        else {
+            NSLog("error in predicting")
         }
         
         // initialize data
@@ -147,8 +150,8 @@ class PredictingViewController: UIViewController, CLLocationManagerDelegate, NSU
         
         // data to send in body of post request (send arguments as json)
         var error: NSError?
-        //        var jsonUpload: NSDictionary = ["feature":featureData, "dsid":0]
-        var jsonUpload: NSDictionary = ["feature":"data", "dsid":0]
+                var jsonUpload: NSDictionary = ["feature":featureData, "dsid":dsid]
+//        var jsonUpload: NSDictionary = ["feature":"data", "dsid":0]
         
         let requestBody: NSData! = NSJSONSerialization.dataWithJSONObject(jsonUpload, options: NSJSONWritingOptions.PrettyPrinted, error: &error)
         
