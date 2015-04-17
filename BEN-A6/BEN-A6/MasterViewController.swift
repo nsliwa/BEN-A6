@@ -78,6 +78,9 @@ class MasterViewController: UIViewController, NSURLSessionTaskDelegate {
         button_add.userInteractionEnabled = false
         button_update.userInteractionEnabled = false
         
+        button_add.backgroundColor = UIColor.clearColor()
+        button_update.backgroundColor = UIColor.clearColor()
+        
         // setup the url
         var baseURL: NSString = NSString(format: "%@/GetCurrentDatasetId",SERVER_URL)
         
@@ -139,6 +142,9 @@ class MasterViewController: UIViewController, NSURLSessionTaskDelegate {
         button_add.userInteractionEnabled = false
         button_update.userInteractionEnabled = false
         
+        button_add.backgroundColor = UIColor.clearColor()
+        button_update.backgroundColor = UIColor.clearColor()
+        
         // setup the url
         var baseURL: NSString = NSString(format: "%@/GetNewDatasetId",SERVER_URL)
         
@@ -172,10 +178,21 @@ class MasterViewController: UIViewController, NSURLSessionTaskDelegate {
                                 NSLog("saved dsid: %d", id)
                             }
                             
+                            self.button_add.backgroundColor = UIColor.greenColor()
+                            
                         }
-                    } else { NSLog("error parsing json") }
-                } else { NSLog("error getting json") }
-            } else { NSLog("error with connection") }
+                    } else {
+                        NSLog("error parsing json")
+                        self.button_add.backgroundColor = UIColor.greenColor()
+                    }
+                } else {
+                    NSLog("error getting json")
+                    self.button_add.backgroundColor = UIColor.greenColor()
+                }
+            } else {
+                NSLog("error with connection")
+                self.button_add.backgroundColor = UIColor.greenColor()
+            }
             
             dispatch_async(dispatch_get_main_queue()) {
                 self.button_learn.userInteractionEnabled = true
@@ -198,6 +215,9 @@ class MasterViewController: UIViewController, NSURLSessionTaskDelegate {
         button_ask.userInteractionEnabled = false
         button_add.userInteractionEnabled = false
         button_update.userInteractionEnabled = false
+        
+        button_add.backgroundColor = UIColor.clearColor()
+        button_update.backgroundColor = UIColor.clearColor()
         
         // setup the url
         var baseURL: NSString = NSString(format: "%@/LearnLocation?dsid=%d",SERVER_URL, dsid)
@@ -229,11 +249,21 @@ class MasterViewController: UIViewController, NSURLSessionTaskDelegate {
                         
                         dispatch_async(dispatch_get_main_queue()) {
                             NSLog("Accuracy: %f", results)
+                            self.button_update.backgroundColor = UIColor.greenColor()
                             
                         }
-                    } else { NSLog("error parsing json") }
-                } else { NSLog("error getting json") }
-            } else { NSLog("error with connection") }
+                    } else {
+                        NSLog("error parsing json")
+                        self.button_update.backgroundColor = UIColor.redColor()
+                    }
+                } else {
+                    NSLog("error getting json")
+                    self.button_update.backgroundColor = UIColor.redColor()
+                }
+            } else {
+                NSLog("error with connection")
+                self.button_update.backgroundColor = UIColor.redColor()
+            }
             
             dispatch_async(dispatch_get_main_queue()) {
                 self.button_learn.userInteractionEnabled = true
@@ -279,6 +309,9 @@ class MasterViewController: UIViewController, NSURLSessionTaskDelegate {
             
         }
         NSLog("segue")
+        
+        button_add.backgroundColor = UIColor.clearColor()
+        button_update.backgroundColor = UIColor.clearColor()
         
     }
 
