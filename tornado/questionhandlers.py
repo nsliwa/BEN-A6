@@ -88,6 +88,7 @@ class AddLabeledInstanceHandler(BaseHandler):
 		dbid = self.db.labeledinstances.insert(
 			{"feature":feature,"label":label,"dsid":dsid}
 		);
+
 		#self.write_json({"id":str(dbid),"feature":feature,"label":label});
 		self.write(data);
 
@@ -160,13 +161,13 @@ class RequestCurrentDatasetId(BaseHandler):
 	def get(self):
 		'''Get a new dataset ID for building a new dataset
 		'''
-		a = self.db.labeledinstances.find_one({"dsid":{"$exists": True}}).sort("dsid", -1);
-
-		if(a["dsid"] is None):
+		if(self.db.labeledinstances.count() == 0):
 			sessionId = 0.0;
 			self.write_json({"dsid":sessionId});
 		else:
-			sessionId = float(a['dsid']);
+			#a = self.db.labeledinstances.find_one({"dsid":{"$exists": True}}).sort("dsid", -1);
+			a = self.db.labeledinstances.find_one(sort=[("dsid", -1)]);
+			sessionId = float(a['dsid'])+1;
 			self.write_json({"dsid":sessionId});
 		#self.client.close()
 		
