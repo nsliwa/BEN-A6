@@ -91,7 +91,7 @@
         
         //Save the row number and send it to the detail view controller
         long row = [[self.tableView indexPathForSelectedRow] row];
-        detailViewController.row = row;
+        detailViewController.row = (int)row;
     }
 }
 

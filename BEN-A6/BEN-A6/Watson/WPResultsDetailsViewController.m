@@ -53,7 +53,7 @@
     self.answerTextBox.text = currentAnswer[KEY_TEXT];
     
     //Get a random number and use it to populate the UI with a random evidence
-    int randNum = [WPUtils randomNumberWithMax:response.evidence.count-1 andMin:0];
+    int randNum = [WPUtils randomNumberWithMax:(int)response.evidence.count-1 andMin:0];
     randNum = self.row; // why should this be random? No thanks
     self.evidenceTextBox.text = response.evidence[randNum][KEY_TEXT];
 }

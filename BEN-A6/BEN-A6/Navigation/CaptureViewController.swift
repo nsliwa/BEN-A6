@@ -85,11 +85,17 @@ class CaptureViewController: UIViewController {
 //                
 //            }
             
-            var img = imageInput
-            
-            self.takeScreenShot(img)
-            
-            return img
+            var img: CIImage? = imageInput
+            if(img != nil) {
+                self.takeScreenShot(img!)
+                
+                return img!
+            }
+            else {
+                NSLog("error with videomanager")
+                
+                return imageInput
+            }
         })
         
         if(motionManager.deviceMotionAvailable) {
@@ -110,6 +116,9 @@ class CaptureViewController: UIViewController {
     //                if let descr = deviceMotion?.description {
     //                    NSLog(descr)
     //                }
+                }
+                else {
+                    NSLog("error with motionmanager")
                 }
                 
             })

@@ -108,6 +108,9 @@ class LearningViewController: UIViewController,UIPickerViewDataSource,UIPickerVi
         
         // initialize data
         image_learn.image = capturedImage
+        NSLog("original width: %f | height: %f", capturedImage!.size.width, capturedImage!.size.height)
+        NSLog("image width: %f | height: %f", image_learn.image!.size.width, image_learn.image!.size.height)
+        
         button_upload.backgroundColor = UIColor.clearColor()
         
         populatePickerData()
