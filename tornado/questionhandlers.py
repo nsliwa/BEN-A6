@@ -32,7 +32,7 @@ import time
 import json
 
 # init PCA
-n_components = 100
+n_components = 300
 # pca = PCA(n_components=n_components)
 pca = RandomizedPCA(n_components=n_components)
 
@@ -248,9 +248,9 @@ class LearnModelHandler(BaseHandler):
 
 			print "dsid: ", dsid, " | model data: ", self.clf[dsid]
 
-			# # accuracy if holding back some data				
-			# acc = sum(lstar==l)/float(len(l));
-			# print "accuracy: ", acc
+			# accuracy if holding back some data				
+			acc = sum(lstar==l)/float(len(l));
+			print "accuracy: ", acc
 
 			self.write_json({"resubAccuracy":acc});
 
