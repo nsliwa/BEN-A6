@@ -110,6 +110,7 @@ class InstancePredictionHandler(BaseHandler):
 
 		# convert img to grayscale
 		gray= cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+		gray = gray.astype(np.float)
 
 		# # convert grayscale img to edges
 		# edges = cv2.Canny(gray,100,200)
@@ -191,7 +192,9 @@ class LearnModelHandler(BaseHandler):
 			img = Image.open(BytesIO(base64.b64decode(feature_data)))
 			img = np.array(img)
 
+
 			gray= cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+			gray = gray.astype(np.float)
 
 			# # convert grayscale img to edges
 			# edges = cv2.Canny(gray,100,200)
@@ -207,10 +210,11 @@ class LearnModelHandler(BaseHandler):
 
 			f.append( fvals )
 			
-			# plt.imshow(img)
-			# plt.show()
+			# cv2.imshow(gray)
+			# cv2.imshow('img', gray)
 
-		# print "shape2: ", np.shape(f)
+
+		print "shape2: ", np.shape(f)
 		# print f
 
 
