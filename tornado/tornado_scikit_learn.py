@@ -31,7 +31,7 @@ class Application(tornado.web.Application):
 	'''Store necessary handlers,
 	   connect to database
 	'''
-
+    
         handlers = [(r"/[/]?", 
                         BaseHandler),
                     (r"/GetExample[/]?",
@@ -61,7 +61,7 @@ class Application(tornado.web.Application):
                         questionhandlers.InstancePredictionHandler),
                     (r"/LearnLocation[/]?",
                         questionhandlers.LearnModelHandler),
-                    
+
                     (r"/GetNewDatasetId[/]?",
                         questionhandlers.RequestNewDatasetId),
                     (r"/GetCurrentDatasetId[/]?",
