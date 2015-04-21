@@ -270,7 +270,7 @@ class LearnModelHandler(BaseHandler):
 				upsert=True)
 		
 		else: 
-			self.write_json({"resubAccuracy":acc});
+			self.write_json({"resubAccuracy-1":acc});
 
 class RequestNewDatasetId(BaseHandler):
 	def get(self):
