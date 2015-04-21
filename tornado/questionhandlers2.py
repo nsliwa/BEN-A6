@@ -2,6 +2,13 @@
 
 # database imports
 from pymongo import MongoClient
+import gridfs
+from PIL import Image
+
+import base64
+import numpy as np
+import matplotlib.pyplot as plt
+from io import BytesIO
 
 import tornado.web
 
@@ -55,10 +62,47 @@ class AddLabeledInstanceHandler(BaseHandler):
 
 		dsid = data["dsid"];
 		label = data["label"];
-		feature = data["feature"];
+		feature_data = data["feature"];
+
+		feature_data = feature_data["img"];
+		# feature = str(feature_data).decode('base64');
+
+		# img = Image.open(BytesIO(base64.b64decode(feature_data)))
+		# img_array = np.array(img)
+
+
+		# # http://alexk2009.hubpages.com/hub/Storing-large-objects-in-MongoDB-using-Python
+		# # create a new gridfs object.
+		# fs = gridfs.GridFS(self.db)
+
+		# # store the data in the database. Returns the id of the file in gridFS
+		# storedFeature = fs.put(feature_data, encoding='base64')
+
+		# # retrieve what was  stored. 
+		# feature =fs.get(storedFeature).read()
+		# # plt.imshow(img)
+		# # plt.show()
+	 
+		# # Image.open(feature).convert('RGBA')
+		# arr = np.array(feature)
+
+		# # record the original shape
+		# shape = arr.shape
+		# print type(img_array)
+
+	 # 	with open('/Users/nicolesliwa/Documents/SMU/10-Spring_2015/7323-Mobile_Aps/text_img.png', 'wb') as f:
+		# 	f.write(outputdata)
+
+		# print str(feature)[0:50]
+
+		print dsid
+
+		# dbid = self.db.images.insert(
+		# 	{"image":storedFeature,"label":label,"dsid":dsid}
+		# );
 
 		dbid = self.db.labeledinstances.insert(
-			{"feature":feature,"label":label,"dsid":dsid}
+			{"feature":feature_data,"label":label,"dsid":dsid}
 		);
 
 		# self.db.locations.insert(
@@ -72,31 +116,37 @@ class AddLabeledInstanceHandler(BaseHandler):
 		self.write_json({"label":data["label"]});
 		#	self.write("\n");
 
-class AddLabeledInstanceHandler(BaseHandler):
-	# @tornado.web.asynchronous
-	def post(self):
-		'''addLocation
-		'''
+# class AddLabeledInstanceHandler(BaseHandler):
+# 	# @tornado.web.asynchronous
+# 	def post(self):
+# 		'''addLocation
+# 		'''
 
-		#print self.request.body;
-		data = json.loads(self.request.body);
+# 		#print self.request.body;
+# 		data = json.loads(self.request.body);
 
-		dsid = data["dsid"];
-		label = data["label"];
-		feature = data["feature"];
+# 		dsid = data["dsid"];
+# 		label = data["label"];
+# 		feature = data["feature"];
 
-		dbid = self.db.labeledinstances.insert(
-			{"feature":feature,"label":label,"dsid":dsid}
-		);
+# 		print str(feature)
 
-		#self.write_json({"id":str(dbid),"feature":feature,"label":label});
-		self.write(data);
+# 		# dbid = self.db.labeledinstances.insert(
+# 		# 	{"feature":feature,"label":label,"dsid":dsid}
+# 		# );
+
+# 		#self.write_json({"id":str(dbid),"feature":feature,"label":label});
+# 		# self.write(data);
+
+
+# 		self.write_json({"label": label})
 
 class LearnHandler(BaseHandler):
 	def get(self):
 		'''learn
 		'''
 		dsid = self.get_int_arg("dsid",default=0);
+		print dsid
 
 		# print self.request.body;
 		# data = json.loads(self.request.body);
@@ -105,14 +155,55 @@ class LearnHandler(BaseHandler):
 		
 		f=[];
 		for a in self.db.labeledinstances.find({"$and": [{"dsid": {"$exists": True}}, {"dsid": dsid}]}):
-			feature = a["feature"];
-			gps = feature["gps"];
-			compass = feature["compass"];
+			# f.append([float(val) for val in a['feature']])
 
-			f.append([float(gps["lat"]),float(gps["long"]),float(compass["x"]),float(compass["y"]),float(compass["z"])]);
+			storedFeature = a["feature"];
+
+			img = Image.open(BytesIO(base64.b64decode(storedFeature)))
+			feature = np.array(img)
+
+			print "feature: ", feature
+
+			print "shape: ", np.shape(feature)
+
+			f.append(feature.reshape((1,-1))[0])
+
+			# plt.imshow(img)
+			# plt.show()
+
+			# # n_samples = len(digits.images)
+			# data = digits.images.reshape((n_samples, -1))
+		 
+			# # http://alexk2009.hubpages.com/hub/Storing-large-objects-in-MongoDB-using-Python
+			# # create a new gridfs object.
+			# fs = gridfs.GridFS(self.db)
+
+			# # retrieve what was  stored. 
+			# feature =fs.get(storedFeature).read() 
+
+			# img = Image.open(BytesIO(base64.b64decode(feature)))
+			# img_array = np.array(img)
+
+			# f.append(img_array);
+
+			# img = feature["img"];
+			# f.append(float(img));
+
+			# gps = feature["gps"];
+			# compass = feature["compass"];
+
+			# f.append([float(gps["lat"]),float(gps["long"]),float(compass["x"]),float(compass["y"]),float(compass["z"])]);
+
+		print "shape2: ", np.shape(f)
+		print f
+
+		# n_samples = len(f)
+		# f = f.reshape((n_samples, -1))
+
 
 		l=[];
 		for a in self.db.labeledinstances.find({"$and": [{"dsid": {"$exists": True}}, {"dsid": dsid}]}):
+			print a["label"]
 			l.append(a["label"]);
 
 		c1 = svm.SVC();
@@ -145,10 +236,14 @@ class PredictionHandler(BaseHandler):
 		data = json.loads(self.request.body);
 
 		vals = data["feature"];
-		gps = vals["gps"];
-		compass = vals["compass"];
-		fvals = [float(gps["lat"]),float(gps["long"]),float(compass["x"]),float(compass["y"]),float(compass["z"])];
+		img = vals["img"]
+		fvals = img
+		# gps = vals["gps"];
+		# compass = vals["compass"];
+		
+		# fvals = [float(gps["lat"]),float(gps["long"]),float(compass["x"]),float(compass["y"]),float(compass["z"])];
 		dsid  = data['dsid'];
+		print dsid
 
 		# load the model from the database (using pickle)
 		# we are blocking tornado!! no!!

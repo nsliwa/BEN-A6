@@ -22,9 +22,6 @@ class LearningViewController: UIViewController,UIPickerViewDataSource,UIPickerVi
     @IBOutlet weak var button_addLocation: UIButton!
     @IBOutlet weak var button_upload: UIButton!
     
-//    // This constraint ties an element at zero points from the bottom layout guide
-//    @IBOutlet var keyboardHeightLayoutConstraint: NSLayoutConstraint?
-    
     // gets gps data
     var locationManager: CLLocationManager! = nil
     var capturedLocation: CLLocationCoordinate2D! = nil
@@ -83,8 +80,6 @@ class LearningViewController: UIViewController,UIPickerViewDataSource,UIPickerVi
         
         session = NSURLSession(configuration: sessionConfig, delegate: self, delegateQueue: nil)
         
-//        //setup notification for keyboard appear/disappear
-//        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardNotification:", name: UIKeyboardWillChangeFrameNotification, object: nil)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -96,6 +91,7 @@ class LearningViewController: UIViewController,UIPickerViewDataSource,UIPickerVi
 
         if let id = defaults.integerForKey("dsid") as Int? {
             dsid = id
+            NSLog("dsid in learning: %d", dsid)
         }
         
         if let serverURL = defaults.stringForKey("Server_URL") as String? {
@@ -126,37 +122,17 @@ class LearningViewController: UIViewController,UIPickerViewDataSource,UIPickerVi
         timer.invalidate()
     }
     
-//    deinit {
-//        NSNotificationCenter.defaultCenter().removeObserver(self)
-//    }
     
     // Called on: viewWillLoad
     func populatePickerData() {
         
-//        // disable buttons while processing
-//        button_upload.enabled = false
-//        button_addLocation.enabled = false
-        
         // completion handler: updates picker with new location labels
         getLocations()
-//            { (locations) -> Void in
-//            self.pickerData.removeAllObjects()
-//            self.pickerData.addObjectsFromArray(locations as! [AnyObject])
-//            
-//            //            self.picker_location.reloadAllComponents()
-//            //
-//            //            // enable buttons after processing
-//            //            self.button_upload.enabled = true
-//            //            self.button_addLocation.enabled = true
-//        })
         
     }
     
     @IBAction func onClick_add(sender: UIButton) {
         self.view.endEditing(true)
-        
-//        button_upload.enabled = false
-//        button_addLocation.enabled = false
         
         if(text_location.text != "") {
             self.button_addLocation.backgroundColor = UIColor.clearColor()
@@ -176,17 +152,15 @@ class LearningViewController: UIViewController,UIPickerViewDataSource,UIPickerVi
     
     @IBAction func onClick_upload(sender: UIButton) {
         
-        // TODO: make sure captuerMagneticField, capturedTime, and locationLabel contain correct info
-        
         // convert UIImage to NSData
         var imageData = UIImagePNGRepresentation(image_learn.image)
         let base64ImageString = imageData.base64EncodedStringWithOptions(.allZeros)
         
         // build data dictionary
         var data: NSMutableDictionary = NSMutableDictionary()
-//        data["img"] = base64ImageString
-        data["gps"] = NSDictionary(dictionary: ["lat": capturedLocation.latitude, "long": capturedLocation.longitude])
-        data["compass"] = NSDictionary(dictionary: ["x": capturedMagneticField.field.x, "y": capturedMagneticField.field.y, "z": capturedMagneticField.field.z])
+        data["img"] = base64ImageString
+//        data["gps"] = NSDictionary(dictionary: ["lat": capturedLocation.latitude, "long": capturedLocation.longitude])
+//        data["compass"] = NSDictionary(dictionary: ["x": capturedMagneticField.field.x, "y": capturedMagneticField.field.y, "z": capturedMagneticField.field.z])
 //        data["time"] = capturedTime
         
         // update text label with progress
@@ -212,8 +186,6 @@ class LearningViewController: UIViewController,UIPickerViewDataSource,UIPickerVi
     
     func sendFeatureData( data: NSDictionary, label:NSString ) {
         // Add a data point and a label to the database for the current dataset ID
-        
-        // TODO: get correct dsid
         
         // reset errors
         self.errorCount = 0
@@ -241,7 +213,7 @@ class LearningViewController: UIViewController,UIPickerViewDataSource,UIPickerVi
         request.HTTPMethod = "POST"
         request.HTTPBody = requestBody
         
-        NSLog("requestBody: %@",  NSString(data: request.HTTPBody!, encoding: NSUTF8StringEncoding)!)
+//        NSLog("requestBody: %@",  NSString(data: request.HTTPBody!, encoding: NSUTF8StringEncoding)!)
         
 //        // disable buttons while processing
 //        button_upload.enabled = false
@@ -354,10 +326,10 @@ class LearningViewController: UIViewController,UIPickerViewDataSource,UIPickerVi
                             
                             if(self.pickerData.count > 0) {
                                 self.locationLabel = self.pickerData[0] as! NSString
+                                var str: NSString = NSString(format: "<- upload %@", self.locationLabel)
+                                self.text_progress.text = str as String
                             }
                         }
-                        
-//                        completionHandler?(results)
                         
                     }
                     else {
@@ -383,7 +355,6 @@ class LearningViewController: UIViewController,UIPickerViewDataSource,UIPickerVi
             }
             
             if(self.errorCount > 0) {
-//                completionHandler?([])
                 
                 dispatch_async(dispatch_get_main_queue(),{
                     self.text_progress.placeholder = NSString(format:"%d Errors Occured", self.errorCount) as String
@@ -392,10 +363,7 @@ class LearningViewController: UIViewController,UIPickerViewDataSource,UIPickerVi
                     self.button_addLocation.backgroundColor = UIColor.redColor()
                     
                     self.pickerData.removeAllObjects()
-//                    self.pickerData.addObjectsFromArray(results as [AnyObject])
                     self.picker_location.reloadAllComponents()
-                    
-                    //                    self.picker_location.reloadAllComponents()
                     
                     self.button_addLocation.hidden = false
                     self.text_location.hidden = false
@@ -465,10 +433,12 @@ class LearningViewController: UIViewController,UIPickerViewDataSource,UIPickerVi
                             
                             self.button_addLocation.backgroundColor = UIColor.clearColor()
                             self.text_location.placeholder = ""
+                            
+                            
+                            self.locationLabel = self.pickerData[self.pickerData.count-1] as! NSString
+                            var str: NSString = NSString(format: "<- upload %@", self.locationLabel)
+                            self.text_progress.text = str as String
                         }
-                        
-//                        completionHandler?(results)
-                        
                     }
                     else {
                         self.errorCount++
@@ -493,7 +463,6 @@ class LearningViewController: UIViewController,UIPickerViewDataSource,UIPickerVi
             }
             
             if(self.errorCount > 0) {
-//                completionHandler?([])
                 dispatch_async(dispatch_get_main_queue()) {
                     self.text_location.placeholder = NSString(format:"%d Errors Occured", self.errorCount) as String
                     self.locationLabel = ""
@@ -505,18 +474,11 @@ class LearningViewController: UIViewController,UIPickerViewDataSource,UIPickerVi
                     
                     NSLog(self.errorMsgs)
                     
-                    
-//                    self.picker_location.selectRow(0, inComponent: 0, animated: true)
                     self.button_addLocation.hidden = false
                     self.text_location.hidden = false
                     
-//                    self.button_addLocation.enabled = true
-//                    self.button_upload.enabled = true
-                    
-//                    self.picker_location.reloadAllComponents()
-                    
-                        self.button_addLocation.userInteractionEnabled = true
-                        self.button_upload.userInteractionEnabled = true
+                    self.button_addLocation.userInteractionEnabled = true
+                    self.button_upload.userInteractionEnabled = true
                     
                     
                 }
@@ -675,7 +637,8 @@ class LearningViewController: UIViewController,UIPickerViewDataSource,UIPickerVi
             
             button_addLocation.hidden = true
             text_location.hidden = true
-            text_location.text = ""
+            var str: NSString = NSString(format: "<- upload %@", locationLabel)
+            text_progress.text = str as String
             
             button_addLocation.backgroundColor = UIColor.clearColor()
             text_location.placeholder = ""
@@ -684,27 +647,13 @@ class LearningViewController: UIViewController,UIPickerViewDataSource,UIPickerVi
         else {
             button_addLocation.hidden = false
             text_location.hidden = false
+            
+            NSLog(locationLabel as String)
         }
     }
     
     
     
-//    // Move textView for keyboard
-//    func keyboardNotification(notification: NSNotification) {
-//        if let userInfo = notification.userInfo {
-//            let endFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.CGRectValue()
-//            let duration:NSTimeInterval = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
-//            let animationCurveRawNSN = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber
-//            let animationCurveRaw = animationCurveRawNSN?.unsignedLongValue ?? UIViewAnimationOptions.CurveEaseInOut.rawValue
-//            let animationCurve:UIViewAnimationOptions = UIViewAnimationOptions(rawValue: animationCurveRaw)
-//            self.keyboardHeightLayoutConstraint?.constant = endFrame?.size.height ?? 0.0
-//            UIView.animateWithDuration(duration,
-//                delay: NSTimeInterval(0),
-//                options: animationCurve,
-//                animations: { self.view.layoutIfNeeded() },
-//                completion: nil)
-//        }
-//    }
     
     
     func registerForKeyboardNotifications() {
@@ -722,18 +671,6 @@ class LearningViewController: UIViewController,UIPickerViewDataSource,UIPickerVi
     func keyboardWasShown(notification: NSNotification) {
         
         self.view.frame.origin.y -= 220
-//        let info: NSDictionary = notification.userInfo!
-//        let keyboardSize: CGSize = info.objectForKey(UIKeyboardFrameBeginUserInfoKey)?.CGRectValue().size()!
-//        let buttonOrigin: CGPoint = button_addLocation.frame.origin
-//        let buttonHeight: CGFloat = button_addLocation.frame.size.height
-//        let visibleRect: CGRect = self.view.frame
-//        visibleRect.size.height = visibleRect.size.height -  keyboardSize.height
-//        
-//        if( !CGRectContainsPoint(visibleRect, buttonOrigin) ) {
-//            let scrollPoint: CGPoint = CGPointMake(0.0, buttonOrigin.y - visibleRect.size.height + buttonHeight)
-//            scrollView.setContentOffset(scrollPoint, animated:true)
-//        }
-//        
     }
     
     func keyboardWillBeHidden(notification: NSNotification) {
@@ -741,12 +678,4 @@ class LearningViewController: UIViewController,UIPickerViewDataSource,UIPickerVi
         self.view.frame.origin.y += 220
         
     }
-//
-//    
-//    - (void)keyboardWillBeHidden:(NSNotification *)notification {
-//    
-//    [self.scrollView setContentOffset:CGPointZero animated:YES];
-//    
-//    }
-    
 }

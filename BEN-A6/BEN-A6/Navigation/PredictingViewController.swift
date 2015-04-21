@@ -109,17 +109,15 @@ class PredictingViewController: UIViewController, CLLocationManagerDelegate, NSU
     
     @IBAction func onClick_upload(sender: UIButton) {
         
-        // TODO: make sure captuerMagneticField, capturedTime, and locationLabel contain correct info
-        
         // convert UIImage to NSData
         var imageData = UIImagePNGRepresentation(image_predict.image)
         let base64ImageString = imageData.base64EncodedStringWithOptions(.allZeros)
         
         // build data dictionary
         var data: NSMutableDictionary = NSMutableDictionary()
-//        data["img"] = base64ImageString
-        data["gps"] = NSDictionary(dictionary: ["lat": capturedLocation.latitude, "long": capturedLocation.longitude])
-        data["compass"] = NSDictionary(dictionary: ["x": capturedMagneticField.field.x, "y": capturedMagneticField.field.y, "z": capturedMagneticField.field.z])
+        data["img"] = base64ImageString
+//        data["gps"] = NSDictionary(dictionary: ["lat": capturedLocation.latitude, "long": capturedLocation.longitude])
+//        data["compass"] = NSDictionary(dictionary: ["x": capturedMagneticField.field.x, "y": capturedMagneticField.field.y, "z": capturedMagneticField.field.z])
 //        data["time"] = capturedTime
         
         // update text label with progress
@@ -150,7 +148,7 @@ class PredictingViewController: UIViewController, CLLocationManagerDelegate, NSU
         
         // data to send in body of post request (send arguments as json)
         var error: NSError?
-                var jsonUpload: NSDictionary = ["feature":featureData, "dsid":dsid]
+        var jsonUpload: NSDictionary = ["feature":featureData, "dsid":dsid]
 //        var jsonUpload: NSDictionary = ["feature":"data", "dsid":0]
         
         let requestBody: NSData! = NSJSONSerialization.dataWithJSONObject(jsonUpload, options: NSJSONWritingOptions.PrettyPrinted, error: &error)
@@ -163,7 +161,7 @@ class PredictingViewController: UIViewController, CLLocationManagerDelegate, NSU
         request.HTTPMethod = "POST"
         request.HTTPBody = requestBody
         
-        NSLog("requestBody: %@",  NSString(data: request.HTTPBody!, encoding: NSUTF8StringEncoding)!)
+//        NSLog("requestBody: %@",  NSString(data: request.HTTPBody!, encoding: NSUTF8StringEncoding)!)
         
         // disable buttons while processing
 //        button_upload.enabled = false

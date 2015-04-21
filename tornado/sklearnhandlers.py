@@ -36,9 +36,19 @@ class RequestNewDatasetId(BaseHandler):
 	def get(self):
 		'''Get a new dataset ID for building a new dataset
 		'''
-		a = self.db.labeledinstances.find_one(sort=[("dsid", -1)])
-		newSessionId = float(a['dsid'])+1;
-		self.write_json({"dsid":newSessionId})
+		a = self.db.labeledinstances.find_one({"dsid": {"$exists": True}}, sort=[("dsid", -1)]);
+
+		if(a is None):
+			sessionId = 0.0;
+			self.write_json({"dsid":sessionId});
+		else:
+			print a["dsid"];
+			sessionId = float(a['dsid'])+1;
+			self.write_json({"dsid":sessionId});
+
+		# a = self.db.labeledinstances.find_one(sort=[("dsid", -1)])
+		# newSessionId = float(a['dsid'])+1;
+		# self.write_json({"dsid":newSessionId})
 		#self.client.close()
 
 class UpdateModelForDatasetId(BaseHandler):

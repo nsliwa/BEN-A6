@@ -19,8 +19,6 @@
 		AD538FFF1ADE5B09007FE406 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD538FFE1ADE5B09007FE406 /* MasterViewController.swift */; };
 		AD5390031ADE5B42007FE406 /* CaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5390011ADE5B42007FE406 /* CaptureViewController.swift */; };
 		AD5390051ADE5E67007FE406 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AD5390041ADE5E67007FE406 /* Info.plist */; };
-		AD53900A1ADE73B1007FE406 /* LearnViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5390091ADE73B1007FE406 /* LearnViewController.swift */; };
-		AD53900C1ADE73BE007FE406 /* PredictViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD53900B1ADE73BE007FE406 /* PredictViewController.swift */; };
 		AD53900E1AE02D4C007FE406 /* LearningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD53900D1AE02D4C007FE406 /* LearningViewController.swift */; };
 		AD5390101AE03CB8007FE406 /* PredictingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD53900F1AE03CB8007FE406 /* PredictingViewController.swift */; };
 		AD5390121AE048AE007FE406 /* AppInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = AD5390111AE048AE007FE406 /* AppInfo.plist */; };
@@ -64,8 +62,6 @@
 		AD5390011ADE5B42007FE406 /* CaptureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureViewController.swift; sourceTree = "<group>"; };
 		AD5390041ADE5E67007FE406 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AD5390081ADE6504007FE406 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
-		AD5390091ADE73B1007FE406 /* LearnViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnViewController.swift; sourceTree = "<group>"; };
-		AD53900B1ADE73BE007FE406 /* PredictViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PredictViewController.swift; sourceTree = "<group>"; };
 		AD53900D1AE02D4C007FE406 /* LearningViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearningViewController.swift; sourceTree = "<group>"; };
 		AD53900F1AE03CB8007FE406 /* PredictingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PredictingViewController.swift; sourceTree = "<group>"; };
 		AD5390111AE048AE007FE406 /* AppInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AppInfo.plist; sourceTree = "<group>"; };
@@ -197,8 +193,6 @@
 			isa = PBXGroup;
 			children = (
 				AD5390011ADE5B42007FE406 /* CaptureViewController.swift */,
-				AD53900B1ADE73BE007FE406 /* PredictViewController.swift */,
-				AD5390091ADE73B1007FE406 /* LearnViewController.swift */,
 				AD53900D1AE02D4C007FE406 /* LearningViewController.swift */,
 				AD53900F1AE03CB8007FE406 /* PredictingViewController.swift */,
 			);
@@ -330,7 +324,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AD53900C1ADE73BE007FE406 /* PredictViewController.swift in Sources */,
 				AD53900E1AE02D4C007FE406 /* LearningViewController.swift in Sources */,
 				AD538FD31ADE596C007FE406 /* ViewController.swift in Sources */,
 				AD53902A1AE0AA06007FE406 /* WPWatsonQuestionResponse.m in Sources */,
@@ -338,7 +331,6 @@
 				EFFA55A81AE18FE20004FD89 /* WPResultsDetailsViewController.m in Sources */,
 				EFFA55AB1AE18FE20004FD89 /* WPWatson.m in Sources */,
 				EFFA55A61AE18FE20004FD89 /* WPConstants.m in Sources */,
-				AD53900A1ADE73B1007FE406 /* LearnViewController.swift in Sources */,
 				AD538FFB1ADE5ABB007FE406 /* OBShapedButton.m in Sources */,
 				EFFA55A91AE18FE20004FD89 /* WPResultsTableViewController.m in Sources */,
 				AD5390031ADE5B42007FE406 /* CaptureViewController.swift in Sources */,

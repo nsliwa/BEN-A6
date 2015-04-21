@@ -44,8 +44,8 @@ class MasterViewController: UIViewController, NSURLSessionTaskDelegate {
         //setup NSURLSession (ephemeral)
         let sessionConfig: NSURLSessionConfiguration = NSURLSessionConfiguration.ephemeralSessionConfiguration()
         
-        sessionConfig.timeoutIntervalForRequest = 5.0;
-        sessionConfig.timeoutIntervalForResource = 8.0;
+        sessionConfig.timeoutIntervalForRequest = 15.0;
+        sessionConfig.timeoutIntervalForResource = 18.0;
         sessionConfig.HTTPMaximumConnectionsPerHost = 1;
         
         session = NSURLSession(configuration: sessionConfig, delegate: self, delegateQueue: nil)
@@ -142,7 +142,7 @@ class MasterViewController: UIViewController, NSURLSessionTaskDelegate {
         button_add.userInteractionEnabled = false
         button_update.userInteractionEnabled = false
         
-        button_add.backgroundColor = UIColor.clearColor()
+        button_add.backgroundColor = UIColor.blueColor()
         button_update.backgroundColor = UIColor.clearColor()
         
         // setup the url
@@ -183,15 +183,15 @@ class MasterViewController: UIViewController, NSURLSessionTaskDelegate {
                         }
                     } else {
                         NSLog("error parsing json")
-                        self.button_add.backgroundColor = UIColor.greenColor()
+                        self.button_add.backgroundColor = UIColor.redColor()
                     }
                 } else {
                     NSLog("error getting json")
-                    self.button_add.backgroundColor = UIColor.greenColor()
+                    self.button_add.backgroundColor = UIColor.redColor()
                 }
             } else {
                 NSLog("error with connection")
-                self.button_add.backgroundColor = UIColor.greenColor()
+                self.button_add.backgroundColor = UIColor.redColor()
             }
             
             dispatch_async(dispatch_get_main_queue()) {
@@ -217,7 +217,7 @@ class MasterViewController: UIViewController, NSURLSessionTaskDelegate {
         button_update.userInteractionEnabled = false
         
         button_add.backgroundColor = UIColor.clearColor()
-        button_update.backgroundColor = UIColor.clearColor()
+        button_update.backgroundColor = UIColor.blueColor()
         
         // setup the url
         var baseURL: NSString = NSString(format: "%@/LearnLocation?dsid=%d",SERVER_URL, dsid)

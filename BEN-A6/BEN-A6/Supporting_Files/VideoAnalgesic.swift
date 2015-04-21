@@ -352,6 +352,9 @@ class VideoAnalgesic: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, AV
         if(self.processBlock != nil){
             filteredImage=self.processBlock!(imageInput: sourceImage)
         }
+        else {
+            NSLog("videoAnalgesic: processing block is nil")
+        }
         
         let sourceExtent:CGRect = sourceImage.extent()
         
@@ -395,9 +398,15 @@ class VideoAnalgesic: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, AV
                 if (filteredImage != nil){
                     self.ciContext.drawImage(filteredImage, inRect:self.videoPreviewViewBounds, fromRect:drawRect)
                 }
+                else {
+                    NSLog("videoAnalgesic: filtered image is nil - in")
+                }
             
                 self.videoPreviewView.display()
             }
+        }
+        else {
+            NSLog("videoAnalgesic: filtered image is nil - out")
         }
 
     }

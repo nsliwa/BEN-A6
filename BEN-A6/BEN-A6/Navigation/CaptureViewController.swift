@@ -48,11 +48,42 @@ class CaptureViewController: UIViewController {
             motionManager.showsDeviceMovementDisplay = true
         }
         
+        self.videoManager.setProcessingBlock( { (imageInput) -> (CIImage) in
+            
+            
+            //            var orientation = UIApplication.sharedApplication().statusBarOrientation
+            //
+            //            if(self.videoManager.getCapturePosition() == AVCaptureDevicePosition.Back) {
+            //                if(orientation == UIInterfaceOrientation.LandscapeLeft) {
+            //                    orientation = UIInterfaceOrientation.LandscapeRight;
+            //                }
+            //                else if(orientation == UIInterfaceOrientation.LandscapeRight) {
+            //                    orientation = UIInterfaceOrientation.LandscapeLeft;
+            //                }
+            //
+            //            }
+            
+            var img: CIImage? = imageInput
+            if(img != nil) {
+                NSLog("passing through videomanager process blk")
+                self.takeScreenShot(img!)
+                
+                return img!
+            }
+            else {
+                NSLog("error with videomanager")
+                
+                return CIImage()
+            }
+        })
+
+        
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+        NSLog("view will appear")
         
             switch_mode.on = switchMode
             
@@ -70,33 +101,6 @@ class CaptureViewController: UIViewController {
                 button_learn.hidden = false
                 button_learn.enabled = true
             }
-        self.videoManager.setProcessingBlock( { (imageInput) -> (CIImage) in
-            
-            
-//            var orientation = UIApplication.sharedApplication().statusBarOrientation
-//            
-//            if(self.videoManager.getCapturePosition() == AVCaptureDevicePosition.Back) {
-//                if(orientation == UIInterfaceOrientation.LandscapeLeft) {
-//                    orientation = UIInterfaceOrientation.LandscapeRight;
-//                }
-//                else if(orientation == UIInterfaceOrientation.LandscapeRight) {
-//                    orientation = UIInterfaceOrientation.LandscapeLeft;
-//                }
-//                
-//            }
-            
-            var img: CIImage? = imageInput
-            if(img != nil) {
-                self.takeScreenShot(img!)
-                
-                return img!
-            }
-            else {
-                NSLog("error with videomanager")
-                
-                return imageInput
-            }
-        })
         
         if(motionManager.deviceMotionAvailable) {
             motionManager.startDeviceMotionUpdatesUsingReferenceFrame(CMAttitudeReferenceFrame.XMagneticNorthZVertical, toQueue: NSOperationQueue.currentQueue(), withHandler: {
