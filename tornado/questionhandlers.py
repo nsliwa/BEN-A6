@@ -255,7 +255,7 @@ class LearnModelHandler(BaseHandler):
 
 		gc.collect()
 
-		f = np.array(f).astype(np.float)
+		# f = np.array(f).astype(np.float)
 		print "f_shape: ", np.shape(f)
 		# print f
 
