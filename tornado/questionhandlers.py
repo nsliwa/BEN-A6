@@ -33,7 +33,7 @@ import time
 import json
 
 # init PCA
-n_components = 200
+n_components = 20
 # pca = PCA(n_components=n_components)
 pca = RandomizedPCA(n_components=n_components)
 
