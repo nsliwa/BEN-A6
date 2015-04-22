@@ -266,12 +266,15 @@ class LearnModelHandler(BaseHandler):
 
 		# pull out corresponding labels from db
 		l=[];
+		count = 0
 		print "labels: "
 		for a in self.db.labeledinstances.find({"$and": [{"dsid": {"$exists": True}}, {"dsid": dsid}]}):
-			location = self.db.locations.find_one({"location":a["label"]});
+			if count % 2 == 0: 
+				location = self.db.locations.find_one({"location":a["label"]});
 
-			print "\t", a["label"], location["location_id"]
-			l.append(location["location_id"]);
+				print "\t", a["label"], location["location_id"]
+				l.append(location["location_id"]);
+			count += 1
 
 		print "label: ", np.shape(l), type(l), type(l[0])
 
