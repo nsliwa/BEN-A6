@@ -124,11 +124,23 @@ class InstancePredictionHandler(BaseHandler):
 		# sift = cv2.SIFT()
 		# kp, des = sift.detectAndCompute(gray,None)
 
+		# http://alexk2009.hubpages.com/hub/Storing-large-objects-in-MongoDB-using-Python
+		# create a new gridfs object.
+		fs = gridfs.GridFS(self.db)
+
+		tmp = self.db.models.find_one({"dsid":dsid});
+		pca_id = tmp['pca']
+
+		# retrieve model that was stored using model_id
+		# unpickle binary
+		storedPCA = fs.get(pca_id).read()
+		pca_retrieved = pickle.loads(storedPCA);
+
 		# reshape img array into 1d array
 		# apply pca transform
 		# fvals now contains feature data for prediction
 		fvals = gray.reshape( (1, -1) )[0]
-		fvals = pca.transform(fvals)
+		fvals = pca_retrieved.transform(fvals)
 		
 
 		# load model from memory if exists, else:
@@ -159,9 +171,7 @@ class InstancePredictionHandler(BaseHandler):
 			tmp = self.db.models.find_one({"dsid":dsid});
 			model_id = tmp['model']
 
-			# http://alexk2009.hubpages.com/hub/Storing-large-objects-in-MongoDB-using-Python
-			# create a new gridfs object.
-			fs = gridfs.GridFS(self.db)
+			
 
 			# retrieve model that was stored using model_id
 			# unpickle binary
@@ -278,6 +288,7 @@ class LearnModelHandler(BaseHandler):
 
 			# pickle model for binary file save
 			bytes = pickle.dumps(c1);
+			bytes_pca = pickle.dumps(pca)
 
 			if c1:
 				print "c1_coef: ", c1.coef_
@@ -289,10 +300,11 @@ class LearnModelHandler(BaseHandler):
 
 			# store the model in the database. Returns the id of the file in gridFS
 			model_id = fs.put(Binary(bytes))
+			pca_id = fs.put(Binary(bytes_pca))
 
 			# store model_id in db
 			self.db.models.update({"dsid":dsid},
-				{  "$set": {"model":model_id}  },
+				{  "$set": {"model":model_id, "pca":pca_id}  },
 				upsert=True)
 		
 		else: 
