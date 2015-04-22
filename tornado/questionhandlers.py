@@ -41,6 +41,9 @@ class GetLocationHandler(BaseHandler):
 	def get(self):
 		'''AddLocation
 		'''
+
+		gc.collect()
+		
 		array=[];
 		for a in self.db.locations.find({"location": { "$exists": True } }):
 			array.append(a["location"]);
@@ -55,6 +58,8 @@ class AddLocationHandler(BaseHandler):
 		location = self.db.locations.find_one({"location_id": {"$exists": True}}, sort=[("dsid", -1)]);
 		loc_id = location["location_id"]
 		print "location_returned: ", location, " | ", loc_id
+
+		gc.collect()
 
 		if not loc_id:
 			self.db.locations.insert(
@@ -79,6 +84,8 @@ class AddLabeledInstanceHandler(BaseHandler):
 		'''
 		# get json from post
 		data = json.loads(self.request.body);
+
+		gc.collect()
 
 		# parse out 1st lvl json
 		dsid = data["dsid"];
@@ -115,6 +122,8 @@ class InstancePredictionHandler(BaseHandler):
 
 		# parse out 2nd lvl json (img inside data)
 		feature_data = feature_data["img"]
+
+		gc.collect()
 
 		# decode img from base64
 		# convert to np array
@@ -209,6 +218,7 @@ class LearnModelHandler(BaseHandler):
 		'''learn
 		'''
 		dsid = self.get_int_arg("dsid",default=0);
+		gc.collect()
 		
 		# pull out all relevant instances from db 
 		f=[];
@@ -242,6 +252,7 @@ class LearnModelHandler(BaseHandler):
 			# cv2.imshow(gray)
 			# cv2.imshow('img', gray)
 
+		gc.collect()
 
 		f = np.array(f).astype(np.float)
 		print "f_shape: ", np.shape(f)
@@ -324,6 +335,8 @@ class RequestNewDatasetId(BaseHandler):
 		'''
 		a = self.db.labeledinstances.find_one({"dsid": {"$exists": True}}, sort=[("dsid", -1)]);
 
+		gc.collect()
+
 		sessionID = 0.0
 
 		if(a is None):
@@ -342,6 +355,8 @@ class RequestCurrentDatasetId(BaseHandler):
 		'''Get a new dataset ID for building a new dataset
 		'''
 		sessionID = 0.0
+
+		gc.collect()
 
 		if(self.db.labeledinstances.count() == 0):
 			sessionId = 0.0;
