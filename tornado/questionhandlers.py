@@ -33,7 +33,7 @@ import time
 import json
 
 # init PCA
-n_components = 10
+n_components = 200
 # pca = PCA(n_components=n_components)
 pca = RandomizedPCA(n_components=n_components)
 
@@ -178,7 +178,7 @@ class InstancePredictionHandler(BaseHandler):
 		
 		# predicted label
 		predLabel_id = model.predict(fvals);
-		predLabel = self.db.locations.find_one({"location_id":predLabel_id});
+		predLabel = self.db.locations.find_one({"location_id":int(predLabel_id[0])});
 
 		print "predicted label: ", predLabel
 
