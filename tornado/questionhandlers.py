@@ -34,7 +34,7 @@ import time
 import json
 
 # init PCA
-n_components = 10
+n_components = 20
 # pca = PCA(n_components=n_components)
 pca = RandomizedPCA(n_components=n_components)
 
@@ -221,41 +221,45 @@ class LearnModelHandler(BaseHandler):
 		dsid = self.get_int_arg("dsid",default=0);
 		gc.collect()
 		
+		count = 0
+
 		# pull out all relevant instances from db 
 		f=[];
 		for a in self.db.labeledinstances.find({"$and": [{"dsid": {"$exists": True}}, {"dsid": dsid}]}):
-			# pull out img in base64
-			feature_data = a["feature"];
+			if count % 2 == 0: 
+				# pull out img in base64
+				feature_data = a["feature"];
 
-			# decode current img from base64
-			# convert to np array
-			img = Image.open(BytesIO(base64.b64decode(feature_data)))
-			img = np.array(img)
+				# decode current img from base64
+				# convert to np array
+				img = Image.open(BytesIO(base64.b64decode(feature_data)))
+				img = np.array(img)
 
 
-			gray= cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
-			gray = gray.astype(np.float)
+				gray= cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+				gray = gray.astype(np.float)
 
-			# # convert grayscale img to edges
-			# edges = cv2.Canny(gray,100,200)
+				# # convert grayscale img to edges
+				# edges = cv2.Canny(gray,100,200)
 
-			# # get SIFT features from grayscale
-			# sift = cv2.SIFT()
-			# kp, des = sift.detectAndCompute(gray,None)
+				# # get SIFT features from grayscale
+				# sift = cv2.SIFT()
+				# kp, des = sift.detectAndCompute(gray,None)
 
-			# reshape img array into 1d array
-			# apply pca transform
-			# fvals now contains feature data for prediction
-			fvals = gray.reshape( (1, -1) )[0]
+				# reshape img array into 1d array
+				# apply pca transform
+				# fvals now contains feature data for prediction
+				fvals = gray.reshape( (1, -1) )[0]
 
-			f.append( fvals )
-			
-			# cv2.imshow(gray)
-			# cv2.imshow('img', gray)
+				f.append( fvals )
+				
+				# cv2.imshow(gray)
+				# cv2.imshow('img', gray)
+			count += 1
 
 		gc.collect()
 
-		# f = np.array(f).astype(np.float)
+		f = np.array(f).astype(np.float)
 		print "f_shape: ", np.shape(f)
 		# print f
 
