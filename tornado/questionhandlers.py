@@ -13,6 +13,7 @@ import cv2
 
 # model saving
 import gridfs
+import gc
 
 import tornado.web
 
@@ -43,7 +44,7 @@ class GetLocationHandler(BaseHandler):
 		'''
 
 		gc.collect()
-		
+
 		array=[];
 		for a in self.db.locations.find({"location": { "$exists": True } }):
 			array.append(a["location"]);
