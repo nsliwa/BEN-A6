@@ -55,11 +55,14 @@ class AddLocationHandler(BaseHandler):
 		loc_id = self.db.locations.find_one({"location_id": {"$exists": True}}, sort=[("dsid", -1)]);
 
 		if not loc_id:
-			loc_id = -1
+			self.db.locations.insert(
+				{"location":data["location"], "location_id": 0}
+			);
 
-		self.db.locations.insert(
-			{"location":data["location"], "location_id": loc_id+1}
-		);
+		else:
+			self.db.locations.insert(
+				{"location":data["location"], "location_id": loc_id[0]+1}
+			);
 
 		array=[];
 		for a in self.db.locations.find({"location": { "$exists": True } }):
