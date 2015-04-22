@@ -56,20 +56,21 @@ class AddLocationHandler(BaseHandler):
 		'''GetLocations
 		'''
 		data = json.loads(self.request.body);
-		location = self.db.locations.find_one({"location_id": {"$exists": True}}, sort=[("dsid", -1)]);
-		loc_id = location["location_id"]
-		print "location_returned: ", location, " | ", loc_id
+		location = self.db.locations.find_one({"location_id": {"$exists": True}}, sort=[("location_id", -1)]);
 
 		gc.collect()
 
 		if not location:
+			print "location_returned: ", location
 			self.db.locations.insert(
 				{"location":data["location"], "location_id": 0}
 			);
 
 		else:
+			loc_id = location["location_id"]
+			print "location_returned: ", location, " | ", loc_id
 			self.db.locations.insert(
-				{"location":data["location"], "location_id": loc_id[0]+1}
+				{"location":data["location"], "location_id": loc_id+1}
 			);
 
 		array=[];
