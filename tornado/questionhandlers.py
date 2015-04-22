@@ -103,6 +103,8 @@ class InstancePredictionHandler(BaseHandler):
 		dsid  = data['dsid'];
 		feature_data = data["feature"];
 
+		print "dsid: ", dsid
+
 		# parse out 2nd lvl json (img inside data)
 		feature_data = feature_data["img"]
 
