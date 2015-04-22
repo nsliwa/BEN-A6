@@ -228,46 +228,50 @@ class LearnModelHandler(BaseHandler):
 		dsid = self.get_int_arg("dsid",default=0);
 		gc.collect()
 		
-		count = 0
+		# count = 0
 
 		# pull out all relevant instances from db 
 		f=[];
 		for a in self.db.labeledinstances.find({"$and": [{"dsid": {"$exists": True}}, {"dsid": dsid}]}):
-			if count % 2 == 0: 
-				# pull out img in base64
-				feature_data = a["feature"];
+			# if count % 2 == 0: 
+			
 
-				# decode current img from base64
-				# convert to np array
-				img = Image.open(BytesIO(base64.b64decode(feature_data)))
-				# downsample
-				width = 100
-				height = 100
-				img = img.resize((width, height), Image.ANTIALIAS)
+			# pull out img in base64
+			feature_data = a["feature"];
 
-				# convert to numpy array
-				img = np.array(img)
+			# decode current img from base64
+			# convert to np array
+			img = Image.open(BytesIO(base64.b64decode(feature_data)))
+			# downsample
+			width = 100
+			height = 100
+			img = img.resize((width, height), Image.ANTIALIAS)
 
-				gray= cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
-				gray = gray.astype(np.float)
+			# convert to numpy array
+			img = np.array(img)
 
-				# # convert grayscale img to edges
-				# edges = cv2.Canny(gray,100,200)
+			gray= cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+			gray = gray.astype(np.float)
 
-				# # get SIFT features from grayscale
-				# sift = cv2.SIFT()
-				# kp, des = sift.detectAndCompute(gray,None)
+			# # convert grayscale img to edges
+			# edges = cv2.Canny(gray,100,200)
 
-				# reshape img array into 1d array
-				# apply pca transform
-				# fvals now contains feature data for prediction
-				fvals = gray.reshape( (1, -1) )[0]
+			# # get SIFT features from grayscale
+			# sift = cv2.SIFT()
+			# kp, des = sift.detectAndCompute(gray,None)
 
-				f.append( fvals )
-				
-				# cv2.imshow(gray)
-				# cv2.imshow('img', gray)
-			count += 1
+			# reshape img array into 1d array
+			# apply pca transform
+			# fvals now contains feature data for prediction
+			fvals = gray.reshape( (1, -1) )[0]
+
+			f.append( fvals )
+			
+			# cv2.imshow(gray)
+			# cv2.imshow('img', gray)
+			
+
+			# count += 1
 
 		gc.collect()
 
@@ -278,15 +282,15 @@ class LearnModelHandler(BaseHandler):
 
 		# pull out corresponding labels from db
 		l=[];
-		count = 0
+		# count = 0
 		print "labels: "
 		for a in self.db.labeledinstances.find({"$and": [{"dsid": {"$exists": True}}, {"dsid": dsid}]}):
-			if count % 2 == 0: 
-				location = self.db.locations.find_one({"location":a["label"]});
+			# if count % 2 == 0: 
+			location = self.db.locations.find_one({"location":a["label"]});
 
-				print "\t", a["label"], location["location_id"]
-				l.append(location["location_id"]);
-			count += 1
+			print "\t", a["label"], location["location_id"]
+			l.append(location["location_id"]);
+			# count += 1
 
 		print "label: ", np.shape(l), type(l), type(l[0])
 
