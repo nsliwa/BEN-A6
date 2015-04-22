@@ -34,7 +34,7 @@ import time
 import json
 
 # init PCA
-n_components = 20
+n_components = 40
 # pca = PCA(n_components=n_components)
 pca = RandomizedPCA(n_components=n_components)
 
@@ -62,7 +62,7 @@ class AddLocationHandler(BaseHandler):
 
 		gc.collect()
 
-		if not loc_id:
+		if not location:
 			self.db.locations.insert(
 				{"location":data["location"], "location_id": 0}
 			);
