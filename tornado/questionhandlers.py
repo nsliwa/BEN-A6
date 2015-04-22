@@ -26,13 +26,14 @@ from basehandler import BaseHandler
 from sklearn import svm
 from sklearn.decomposition import PCA
 from sklearn.decomposition import RandomizedPCA
+from sklearn.grid_search import GridSearchCV
 import pickle
 from bson.binary import Binary
 import time
 import json
 
 # init PCA
-n_components = 300
+n_components = 10
 # pca = PCA(n_components=n_components)
 pca = RandomizedPCA(n_components=n_components)
 
@@ -51,8 +52,10 @@ class AddLocationHandler(BaseHandler):
 		'''GetLocations
 		'''
 		data = json.loads(self.request.body);
+		loc_id = self.db.locations.find_one({"location_id": {"$exists": True}}, sort=[("dsid", -1)]);
+
 		self.db.locations.insert(
-			{"location":data["location"]}
+			{"location":data["location"], "location_id": loc_id+1}
 		);
 
 		array=[];
@@ -168,9 +171,15 @@ class InstancePredictionHandler(BaseHandler):
 		
 		model = self.clf[dsid]
 		print "dsid: ", dsid, " | model data: ", model
+
+		if model:
+			print model.coef_
+			print np.shape(model)
 		
 		# predicted label
-		predLabel = model.predict(fvals);
+		predLabel_id = model.predict(fvals);
+		predLabel = self.db.locations.find_one({"location_id":predLabel_id});
+
 		print "predicted label: ", predLabel
 
 		self.write_json({"label":str(predLabel[0])});
@@ -214,7 +223,8 @@ class LearnModelHandler(BaseHandler):
 			# cv2.imshow('img', gray)
 
 
-		print "shape2: ", np.shape(f)
+		f = np.array(f).astype(np.float)
+		print "f_shape: ", np.shape(f)
 		# print f
 
 
@@ -222,23 +232,33 @@ class LearnModelHandler(BaseHandler):
 		l=[];
 		print "labels: "
 		for a in self.db.labeledinstances.find({"$and": [{"dsid": {"$exists": True}}, {"dsid": dsid}]}):
-			print "\t", a["label"]
-			l.append(a["label"]);
+			location = self.db.locations.find_one({"location":a["label"]});
 
-		print "label: ", np.shape(l)
+			print "\t", a["label"], location["location_id"]
+			l.append(location["location_id"]);
 
+		print "label: ", np.shape(l), type(l), type(l[0])
 
-		c1 = svm.SVC();
 		acc = -1;
 		if l:
 			# fit pca to data
 			# transform data 
 			pca.fit(f)
 			f_transformed = pca.transform(f)
+			print "f_trans_shape: ", np.shape(f_transformed)
+			print "label_shape: ", np.shape(l)
 
 			# training: fit model with transformed data
-			c1.fit(f_transformed, l)
+			# c1.fit(f_transformed, l)
+			# lstar = c1.predict(f_transformed)
+
+			c1 = svm.SVC(kernel='linear');
+			estimator = GridSearchCV(c1, cv=3, n_jobs=-1, param_grid={'C':[.1, .001, .00001], "kernel": ['linear', 'rbf']})
+			estimator.fit(f_transformed, l)
+			c1 = estimator.best_estimator_
 			lstar = c1.predict(f_transformed)
+
+			print "estimator scores: ", estimator.grid_scores_
 			
 			# either init in-memory models or append new one
 			if(self.clf == []):
@@ -256,6 +276,10 @@ class LearnModelHandler(BaseHandler):
 
 			# pickle model for binary file save
 			bytes = pickle.dumps(c1);
+
+			if c1:
+				print "c1_coef: ", c1.coef_
+				print "c1_shape: ", np.shape(c1.coef_), np.shape(c1.n_support_) 
 
 			# http://alexk2009.hubpages.com/hub/Storing-large-objects-in-MongoDB-using-Python
 			# create a new gridfs object.
