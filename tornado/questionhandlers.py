@@ -194,7 +194,7 @@ class InstancePredictionHandler(BaseHandler):
 
 		print "predicted label: ", predLabel
 
-		self.write_json({"label":str(predLabel[0])});
+		self.write_json({"label":predLabel});
 
 class LearnModelHandler(BaseHandler):
 	def get(self):
