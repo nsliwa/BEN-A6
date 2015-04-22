@@ -130,6 +130,11 @@ class InstancePredictionHandler(BaseHandler):
 		# decode img from base64
 		# convert to np array
 		img = Image.open(BytesIO(base64.b64decode(feature_data)))
+		# downsample
+		width = 100
+		height = 100
+		img = img.resize((width, height), Image.ANTIALIAS)
+		# convert to numpy array
 		img = np.array(img)
 
 		# convert img to grayscale
@@ -235,8 +240,13 @@ class LearnModelHandler(BaseHandler):
 				# decode current img from base64
 				# convert to np array
 				img = Image.open(BytesIO(base64.b64decode(feature_data)))
-				img = np.array(img)
+				# downsample
+				width = 100
+				height = 100
+				img = img.resize((width, height), Image.ANTIALIAS)
 
+				# convert to numpy array
+				img = np.array(img)
 
 				gray= cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
 				gray = gray.astype(np.float)
