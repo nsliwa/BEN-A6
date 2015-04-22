@@ -59,6 +59,7 @@ class AddLocationHandler(BaseHandler):
 				{"location":data["location"], "location_id": 0}
 			);
 
+		print "location_returned: ", loc_id
 		else:
 			self.db.locations.insert(
 				{"location":data["location"], "location_id": loc_id[0]+1}
