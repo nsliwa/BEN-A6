@@ -44,8 +44,8 @@ class MasterViewController: UIViewController, NSURLSessionTaskDelegate {
         //setup NSURLSession (ephemeral)
         let sessionConfig: NSURLSessionConfiguration = NSURLSessionConfiguration.ephemeralSessionConfiguration()
         
-        sessionConfig.timeoutIntervalForRequest = 15.0;
-        sessionConfig.timeoutIntervalForResource = 18.0;
+        sessionConfig.timeoutIntervalForRequest = 180.0;
+        sessionConfig.timeoutIntervalForResource = 180.0;
         sessionConfig.HTTPMaximumConnectionsPerHost = 1;
         
         session = NSURLSession(configuration: sessionConfig, delegate: self, delegateQueue: nil)
