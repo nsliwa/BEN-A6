@@ -54,6 +54,9 @@ class AddLocationHandler(BaseHandler):
 		data = json.loads(self.request.body);
 		loc_id = self.db.locations.find_one({"location_id": {"$exists": True}}, sort=[("dsid", -1)]);
 
+		if not loc_id:
+			loc_id = -1
+
 		self.db.locations.insert(
 			{"location":data["location"], "location_id": loc_id+1}
 		);
