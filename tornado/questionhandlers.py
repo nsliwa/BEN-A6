@@ -209,6 +209,7 @@ class InstancePredictionHandler(BaseHandler):
 		# predicted label
 		predLabel_id = model.predict(fvals);
 		predLabel = self.db.locations.find_one({"location_id":int(predLabel_id[0])});
+		predLabel = predLabel["location"]
 
 		print "predicted label: ", predLabel
 
