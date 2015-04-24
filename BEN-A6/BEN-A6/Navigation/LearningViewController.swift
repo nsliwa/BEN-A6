@@ -28,7 +28,7 @@ class LearningViewController: UIViewController,UIPickerViewDataSource,UIPickerVi
     var timer: NSTimer! = nil
     
     // placeholders to store learning metadata
-    var capturedImage: UIImage! = nil
+    var capturedImage: Array<UIImage> = []
     var pickerData:NSMutableArray = ["Peruna Statue","Dallas Hall Fountain","Blanton Fountain","Meadows School Fountain","Fondren Fountain","Meadows Museum Fountain","Centennial Fountain"]
     
     // gets photo metadata
@@ -103,8 +103,8 @@ class LearningViewController: UIViewController,UIPickerViewDataSource,UIPickerVi
         
         
         // initialize data
-        image_learn.image = capturedImage
-        NSLog("original width: %f | height: %f", capturedImage!.size.width, capturedImage!.size.height)
+        image_learn.image = capturedImage[0]
+        NSLog("original width: %f | height: %f", capturedImage[0].size.width, capturedImage[0].size.height)
         NSLog("image width: %f | height: %f", image_learn.image!.size.width, image_learn.image!.size.height)
         
         button_upload.backgroundColor = UIColor.clearColor()
@@ -152,35 +152,39 @@ class LearningViewController: UIViewController,UIPickerViewDataSource,UIPickerVi
     
     @IBAction func onClick_upload(sender: UIButton) {
         
-        // convert UIImage to NSData
-        var imageData = UIImagePNGRepresentation(image_learn.image)
-        let base64ImageString = imageData.base64EncodedStringWithOptions(.allZeros)
+        button_upload.backgroundColor = UIColor.blueColor()
+        self.text_progress.text = "Uploading"
         
-        // build data dictionary
-        var data: NSMutableDictionary = NSMutableDictionary()
-        data["img"] = base64ImageString
+        // convert UIImage to NSData
+        for index in 0...99 {
+            var imageData = UIImagePNGRepresentation(capturedImage[0])
+            let base64ImageString = imageData.base64EncodedStringWithOptions(.allZeros)
+        
+            // build data dictionary
+            var data: NSMutableDictionary = NSMutableDictionary()
+            data["img"] = base64ImageString
 //        data["gps"] = NSDictionary(dictionary: ["lat": capturedLocation.latitude, "long": capturedLocation.longitude])
 //        data["compass"] = NSDictionary(dictionary: ["x": capturedMagneticField.field.x, "y": capturedMagneticField.field.y, "z": capturedMagneticField.field.z])
 //        data["time"] = capturedTime
         
-        // update text label with progress
-        // update button background color with progress
-        button_upload.backgroundColor = UIColor.blueColor()
-        self.text_progress.text = "Uploading"
+            // update text label with progress
+            // update button background color with progress
+            
         
         
-        if(locationLabel == ""){
-            errorCount++
-            errorMsgs = errorMsgs + (NSString(format:"Error %d: Need to select location label\n", errorCount) as String)
+            if(locationLabel == ""){
+                errorCount++
+                errorMsgs = errorMsgs + (NSString(format:"Error %d: Need to select location label\n", errorCount) as String)
             
-            text_progress.text = "Select location label"
-            button_upload.backgroundColor = UIColor.redColor()
+                text_progress.text = "Select location label"
+                button_upload.backgroundColor = UIColor.redColor()
             
-            NSLog(errorMsgs)
-        }
-        else {
-            // API call
-            sendFeatureData(data, label: locationLabel)
+                NSLog(errorMsgs)
+            }
+            else {
+                // API call
+                sendFeatureData(data, label: locationLabel)
+            }
         }
     }
     

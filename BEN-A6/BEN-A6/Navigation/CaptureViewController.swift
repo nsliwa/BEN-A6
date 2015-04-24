@@ -23,7 +23,7 @@ class CaptureViewController: UIViewController {
     @IBOutlet weak var icon_predict: UIImageView!
     
     var switchMode = false
-    var capturedImage: UIImage! = nil
+    var capturedImage: Array<UIImage> = []
     
     var capturedMagneticField: CMCalibratedMagneticField! = nil
     var capturedPosition: CMAttitude! = nil
@@ -192,24 +192,26 @@ class CaptureViewController: UIViewController {
     }
     
     func takeScreenShot(img:CIImage) {
-        let ctx = CIContext(options:nil)
-        let cgImage = ctx.createCGImage(img, fromRect:img.extent())
+        for index in 0...99{
+            let ctx = CIContext(options:nil)
+            let cgImage = ctx.createCGImage(img, fromRect:img.extent())
         
-        let orientation = self.videoManager.getImageOrientationFromUIOrientation(UIApplication.sharedApplication().statusBarOrientation)
+            let orientation = self.videoManager.getImageOrientationFromUIOrientation(UIApplication.sharedApplication().statusBarOrientation)
         
-        NSLog("orientation: %d", orientation)
+            NSLog("orientation: %d", orientation)
         
-        var uiImage = UIImage()
+            var uiImage = UIImage()
         
-        if(orientation == 5){
-            uiImage = UIImage(CGImage: cgImage, scale: 1.0, orientation: UIImageOrientation.Right)!
-        }else if(orientation == 3){
-            uiImage = UIImage(CGImage: cgImage, scale: 1.0, orientation: UIImageOrientation.Up)!
-        }else {
-            uiImage = UIImage(CGImage: cgImage, scale: 1.0, orientation: UIImageOrientation.Down)!
+            if(orientation == 5){
+                uiImage = UIImage(CGImage: cgImage, scale: 1.0, orientation: UIImageOrientation.Right)!
+            }else if(orientation == 3){
+                uiImage = UIImage(CGImage: cgImage, scale: 1.0, orientation: UIImageOrientation.Up)!
+            }else {
+                uiImage = UIImage(CGImage: cgImage, scale: 1.0, orientation: UIImageOrientation.Down)!
+            }
+        
+            capturedImage.append(uiImage)
         }
-        
-        capturedImage = uiImage
     }
 
     // MARK: - Navigation
@@ -236,8 +238,7 @@ class CaptureViewController: UIViewController {
         }
         else if (segue.identifier == "segue_modal_predict") {
             let vc = segue.destinationViewController as! PredictingViewController
-            vc.capturedImage = capturedImage
-            
+            vc.capturedImage = capturedImage[0]
             vc.capturedCameraPosition = capturedPosition
             vc.capturedMagneticField = capturedMagneticField
             vc.capturedTime = hour
