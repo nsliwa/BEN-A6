@@ -192,13 +192,17 @@ class CaptureViewController: UIViewController {
     }
     
     func takeScreenShot(img:CIImage) {
+        
+        let orientation = self.videoManager.getImageOrientationFromUIOrientation(UIApplication.sharedApplication().statusBarOrientation)
+        
+        NSLog("orientation: %d", orientation)
+
         for index in 0...99{
+            NSLog("pic %d", index);
             let ctx = CIContext(options:nil)
             let cgImage = ctx.createCGImage(img, fromRect:img.extent())
         
-            let orientation = self.videoManager.getImageOrientationFromUIOrientation(UIApplication.sharedApplication().statusBarOrientation)
-        
-            NSLog("orientation: %d", orientation)
+                
         
             var uiImage = UIImage()
         
@@ -212,6 +216,7 @@ class CaptureViewController: UIViewController {
         
             capturedImage.append(uiImage)
         }
+        
     }
 
     // MARK: - Navigation
