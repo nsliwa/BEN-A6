@@ -14,6 +14,17 @@ class CaptureViewController: UIViewController {
     var videoManager : VideoAnalgesic! = nil
     var motionManager : CMMotionManager! = nil
     
+    let captureSession = AVCaptureSession()
+    // If we find a device we'll store it here for later use
+    var captureDevice : AVCaptureDevice?
+    
+    let sessionQueue = dispatch_queue_create("camera", DISPATCH_QUEUE_SERIAL)
+    
+    let stillCameraOutput = AVCaptureStillImageOutput()
+    
+    
+    var previewLayer : AVCaptureVideoPreviewLayer?
+    
     @IBOutlet weak var switch_mode: UISwitch!
     @IBOutlet weak var button_predict: UIButton!
     @IBOutlet weak var button_learn: UIButton!
@@ -48,36 +59,50 @@ class CaptureViewController: UIViewController {
             motionManager.showsDeviceMovementDisplay = true
         }
         
-        self.videoManager.setProcessingBlock( { (imageInput) -> (CIImage) in
-            
-            
-            //            var orientation = UIApplication.sharedApplication().statusBarOrientation
-            //
-            //            if(self.videoManager.getCapturePosition() == AVCaptureDevicePosition.Back) {
-            //                if(orientation == UIInterfaceOrientation.LandscapeLeft) {
-            //                    orientation = UIInterfaceOrientation.LandscapeRight;
-            //                }
-            //                else if(orientation == UIInterfaceOrientation.LandscapeRight) {
-            //                    orientation = UIInterfaceOrientation.LandscapeLeft;
-            //                }
-            //
-            //            }
-            
-            var img: CIImage? = imageInput
-            if(img != nil) {
-                NSLog("passing through videomanager process blk")
-                self.takeScreenShot(img!)
-                
-                return img!
+        
+        if self.captureSession.canAddOutput(self.stillCameraOutput) {
+            self.captureSession.addOutput(self.stillCameraOutput)
+        }
+        
+        captureSession.sessionPreset = AVCaptureSessionPresetPhoto
+        
+        
+        
+        let devices = AVCaptureDevice.devices()
+        
+        // Loop through all the capture devices on this phone
+        for device in devices {
+            // Make sure this particular device supports video
+            if (device.hasMediaType(AVMediaTypeVideo)) {
+                // Finally check the position and confirm we've got the back camera
+                if(device.position == AVCaptureDevicePosition.Back) {
+                    captureDevice = device as? AVCaptureDevice
+                }
             }
-            else {
-                NSLog("error with videomanager")
-                
-                return CIImage()
-            }
-        })
+        }
+        
+        if captureDevice != nil {
+            beginSession()
+        }
+        
+        
 
         
+    }
+    
+    func beginSession() {
+        var err : NSError? = nil
+        captureSession.addInput(AVCaptureDeviceInput(device: captureDevice, error: &err))
+        
+        if err != nil {
+            println("error: \(err?.localizedDescription)")
+        }
+        
+        previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+        self.view.layer.addSublayer(previewLayer)
+        previewLayer?.frame = self.view.layer.frame
+        
+        captureSession.startRunning()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -137,11 +162,10 @@ class CaptureViewController: UIViewController {
 //            }
         }
         
-        self.videoManager.start()
     }
     
     override func viewWillDisappear(animated: Bool) {
-        self.videoManager.stop()
+        
         
         if(motionManager.deviceMotionAvailable) {
             self.motionManager.stopDeviceMotionUpdates()
@@ -150,11 +174,11 @@ class CaptureViewController: UIViewController {
     
     
     @IBAction func onClick_toggleFlash(sender: UIButton) {
-        
+        /*
         if(self.videoManager.toggleFlash()){
             self.videoManager.turnOnFlashwithLevel(0.1)
         }
-        
+        */
     }
     
     @IBAction func onToggle_modeSwitch(sender: UISwitch) {
@@ -185,12 +209,72 @@ class CaptureViewController: UIViewController {
 //            
 //        }
         
+        
+        NSLog("Taking pictures")
+        
+       
+            
+            let connection = self.stillCameraOutput.connectionWithMediaType(AVMediaTypeVideo)
+            
+            
+            
+            // update the video orientation to the device one
+            connection.videoOrientation = AVCaptureVideoOrientation(rawValue: UIDevice.currentDevice().orientation.rawValue)!            
+        
+        var set: Array<Float> = []
+        for index in 0...99 {
+            set.append(0.0)
+        }
+            
+            var settings = set.map {
+                (bias:Float) -> AVCaptureAutoExposureBracketedStillImageSettings in
+                
+                AVCaptureAutoExposureBracketedStillImageSettings.autoExposureSettingsWithExposureTargetBias(bias)
+            }
+            
+            var counter = settings.count
+        
+            self.stillCameraOutput.captureStillImageBracketAsynchronouslyFromConnection(connection, withSettingsArray: settings) {
+                (sampleBuffer, settings, error) -> Void in
+                
+                
+                if error == nil {
+                    
+                    // if the session preset .Photo is used, or if explicitly set in the device's outputSettings
+                    // we get the data already compressed as JPEG
+                    
+                    let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(sampleBuffer)
+                    
+                    // the sample buffer also contains the metadata, in case we want to modify it
+                    let metadata:NSDictionary = CMCopyDictionaryOfAttachments(nil, sampleBuffer, CMAttachmentMode(kCMAttachmentMode_ShouldPropagate)).takeUnretainedValue()
+                    
+                    if let image = UIImage(data: imageData) {
+                        self.capturedImage.append(image)
+                    }
+                }
+                else {
+                    NSLog("error while capturing still image: \(error)")
+                }
+                
+                counter--
+                if(counter == 0){
+                    self.performSegueWithIdentifier("segue_modal_learn", sender: self)
+                }
+                
+            }
+            
+        //self.stillCameraOutput.
+        
+        //if(!self.stillCameraOutput.capturingStillImage)
+        
+        
+        
     }
     
     @IBAction func captureImage(segue:UIStoryboardSegue) {
         
     }
-    
+    /*
     func takeScreenShot(img:CIImage) {
         
         let orientation = self.videoManager.getImageOrientationFromUIOrientation(UIApplication.sharedApplication().statusBarOrientation)
@@ -218,10 +302,13 @@ class CaptureViewController: UIViewController {
         }
         
     }
-
+*/
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
+    
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
