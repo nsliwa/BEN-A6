@@ -3,6 +3,11 @@
 # database imports
 from pymongo import MongoClient
 
+# model saving
+import gridfs
+import pickle
+from bson.binary import Binary
+
 # image decoding
 import base64
 import numpy as np
@@ -43,7 +48,7 @@ for loc in db.locations.find():
 	features = []
 	labels = []
 
-	print "location:", location, "landmarks:", landmarks
+	print "loc:\t", location, "\nlndmrk:\t", landmarks
 
 	for a in db.labeledinstances.find( {"$and": [{"dsid": {"$exists": True}}, {"dsid": location}]} ):
 		# process feature data
@@ -130,9 +135,9 @@ for loc in db.locations.find():
 		# c_mnnb_pca.fit(features_transformed, labels)
 
 		classifier = c_svc
-		print "classifier scores-svc: ", c_svc.grid_scores_, c_svc.best_score_
-		print "classifier scores-gnb: ", c_gnb.grid_scores_, c_gnb.best_score_
-		print "classifier scores-mnnb: ", c_mnnb.grid_scores_, c_mnnb.best_score_
+		print "\nclassifier scores-svc:\n\t", c_svc.grid_scores_, c_svc.best_score_
+		print "\nclassifier scores-gnb:\n\t", c_gnb.grid_scores_, c_gnb.best_score_
+		print "\nclassifier scores-mnnb:\n\t", c_mnnb.grid_scores_, c_mnnb.best_score_
 		# if(classifier.best_score_ < c_svc_pca.best_estimator_.best_score_):
 		# 	print "c_svc_pca is better"
 		# 	classifier = c_svc_pca.best_estimator_
@@ -151,7 +156,7 @@ for loc in db.locations.find():
 
 		classifier = classifier.best_estimator_
 
-		print "best classifier:", classifier
+		print "\nbest classifier:\n\t", classifier
 
 		# if(classifier.best_score_ < c_mnnb_pca.best_estimator_.best_score_):
 		# 	print "c_mnnb_pca is better"
@@ -159,5 +164,29 @@ for loc in db.locations.find():
 
 		# print "classifier scores: ", estimator.grid_scores_, estimator.best_score_
 	
+		# pickle model for binary file save
+		bytes = pickle.dumps(classifier);
+		# bytes_pca = pickle.dumps(pca)
+
+		if classifier:
+			print "\nc_coef:\n\t", classifier.coef_
+			print "\nc_shape:\n\t", np.shape(classifier.coef_), np.shape(classifier.n_support_) 
+
+		# http://alexk2009.hubpages.com/hub/Storing-large-objects-in-MongoDB-using-Python
+		# create a new gridfs object.
+		fs = gridfs.GridFS(db)
+
+		# store the model in the database. Returns the id of the file in gridFS
+		model_id = fs.put(Binary(bytes))
+		# pca_id = fs.put(Binary(bytes_pca))
+
+		# store model_id in db
+		db.models.update(
+			{ "dsid":location },
+			{ "$set": 
+				{"model":model_id}  
+			},
+			upsert=True)
+
 	else:
-		print "no labeled instances found"
+		print "\tno labeled instances found for classification"
