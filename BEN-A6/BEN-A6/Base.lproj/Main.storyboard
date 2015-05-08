@@ -287,13 +287,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Nff-OS-kKV">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nff-OS-kKV">
                                 <rect key="frame" x="55" y="52" width="210" height="255"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Nff-OS-kKV" secondAttribute="height" multiplier="16:9" constant="-243.33333333333331" id="HWJ-Pw-DHY"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hca-63-dys">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hca-63-dys">
                                 <rect key="frame" x="16" y="312" width="45" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="0dM-lA-dUs"/>
@@ -306,7 +306,7 @@
                                     <action selector="onClick_upload:" destination="yRH-dR-jDi" eventType="touchUpInside" id="1oZ-zO-hnf"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="&lt;- click to upload" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6GQ-4y-FSk">
+                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="&lt;- click to upload" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6GQ-4y-FSk">
                                 <rect key="frame" x="75" y="320" width="211" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="211" id="BWN-8G-YkP"/>
@@ -314,7 +314,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gHH-1L-F3T">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gHH-1L-F3T">
                                 <rect key="frame" x="16" y="404" width="45" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="45" id="20m-3L-pqS"/>
@@ -324,7 +324,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YKY-cw-Ha7">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YKY-cw-Ha7">
                                 <rect key="frame" x="7" y="20" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="AJf-D1-uar"/>
@@ -337,7 +337,7 @@
                                     <segue destination="khD-aQ-nlw" kind="unwind" unwindAction="captureImage:" id="tjR-0h-jsk"/>
                                 </connections>
                             </button>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qhy-wz-uVg">
+                            <pickerView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qhy-wz-uVg">
                                 <rect key="frame" x="75" y="358" width="211" height="155"/>
                             </pickerView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DIZ-IL-2Ie">
@@ -353,7 +353,7 @@
                                     <action selector="onClick_add:" destination="yRH-dR-jDi" eventType="touchUpInside" id="TeQ-EA-gMb"/>
                                 </connections>
                             </button>
-                            <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fLZ-bx-CEw">
+                            <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fLZ-bx-CEw">
                                 <rect key="frame" x="61" y="518" width="211" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="211" id="JPM-RB-M4W"/>
